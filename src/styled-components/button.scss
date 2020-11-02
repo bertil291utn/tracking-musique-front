@@ -8,6 +8,10 @@
   margin: 1rem 0;
 }
 
+.button:focus {
+  outline: none;
+}
+
 .primary {
   background-color: $primary;
   border-radius: 35px;
