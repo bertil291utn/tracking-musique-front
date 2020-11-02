@@ -21,8 +21,8 @@ const Input = props => {
 
 Input.propTypes = {
   placeholder: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   value: PropTypes.string,
-  name: PropTypes.string,
   password: PropTypes.bool,
   onchange: PropTypes.func,
 };
@@ -30,7 +30,6 @@ Input.propTypes = {
 Input.defaultProps = {
   onchange: () => { },
   password: false,
-  name: '',
   value: '',
 };
 
