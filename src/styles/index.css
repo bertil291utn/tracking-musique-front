@@ -1,7 +1,6 @@
 @font-face {
   font-family: "acremedium";
-  src:
-    url("assets/fonts/jonathan_ball_-_acre-medium-webfont.woff2") format("woff2"),
+  src: url("assets/fonts/jonathan_ball_-_acre-medium-webfont.woff2") format("woff2"),
     url("assets/fonts/jonathan_ball_-_acre-medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -9,9 +8,13 @@
 
 body {
   margin: 0;
-  font-family: 'acremedium', Arial, sans-serif;
+  font-family: "acremedium", Arial, sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+.title {
+  font-weight: 700;
 }
