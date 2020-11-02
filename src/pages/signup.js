@@ -1,5 +1,5 @@
 import React from 'react';
-import MainButton from '../styled-components/main_button';
+import PrimaryButton from '../styled-components/primary_button';
 import styles from './signup.module.scss';
 
 const SignUp = () => {
@@ -9,7 +9,7 @@ const SignUp = () => {
       <div className={container}>
         <h1 className="title">Spotify Stats</h1>
         <p>You are what you measure</p>
-        <MainButton title="sign up" />
+        <PrimaryButton title="sign up" />
       </div>
     </div>
   );

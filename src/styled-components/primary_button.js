@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './main_button.module.scss';
+import styles from './primary_button.module.scss';
 
-const MainButton = props => {
+const PrimaryButton = props => {
   const { primary } = styles;
   const { title } = props;
   return (
@@ -10,8 +10,8 @@ const MainButton = props => {
   );
 };
 
-MainButton.propTypes = {
+PrimaryButton.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default MainButton;
+export default PrimaryButton;
