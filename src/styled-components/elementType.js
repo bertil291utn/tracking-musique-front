@@ -4,9 +4,4 @@ const buttonType = {
   linkType: 'link',
 };
 
-const inputType = {
-  textType: 'text',
-  passwordType: 'password',
-};
-
-export { buttonType, inputType };
+export default buttonType;

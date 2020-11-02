@@ -1,12 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Splash from '../pages/splash';
+import SignUp from '../pages/signup';
 import styles from './App.module.scss';
-import Home from '../pages/home';
 
 const App = () => {
   const { background } = styles;
   return (
     <div className={background}>
-      <Home />
+      <Router>
+        <Switch>
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/" component={Splash} />
+          {/* <Route component={NotFound} /> */}
+        </Switch>
+      </Router>
     </div>
   );
 };

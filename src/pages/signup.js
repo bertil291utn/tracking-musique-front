@@ -1,21 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../styled-components/button';
 import Input from '../styled-components/input';
 import styles from './signup.module.scss';
-import { buttonType, inputType } from '../styled-components/elementType';
+import buttonType from '../styled-components/elementType';
 
 const SignUp = () => {
   const { primaryType, linkType } = buttonType;
-  const { textType, passwordType } = inputType;
   const { background, container } = styles;
+  const initialForm = { name: '', email: '', password: '' };
+  const [form, setForm] = useState(initialForm);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setForm(initialForm);
+    console.log(form);
+  };
+
+  const handleInputChange = target => {
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const { name } = target;
+    setForm({
+      ...form,
+      [name]: value,
+    });
+  };
+
   return (
     <div className={background}>
       <div className={container}>
-        <Input placeholder="Name" value="name" name="name" type={textType} />
-        <Input placeholder="Email" value="email" name="email" type={textType} />
-        <Input placeholder="Password" value="password" name="password" type={passwordType} />
-        <Button type={primaryType} title="sign up" />
-        <Button type={linkType} title="log in" />
+        <form onSubmit={handleSubmit}>
+          <Input
+            placeholder="Name"
+            name="name"
+            value={form.name}
+            onchange={handleInputChange}
+          />
+          <Input
+            placeholder="Email"
+            name="email"
+            value={form.email}
+            onchange={handleInputChange}
+          />
+          <Input
+            placeholder="Password"
+            name="password"
+            value={form.password}
+            onchange={handleInputChange}
+            password
+          />
+          <Button classType={primaryType} title="sign up" submit />
+        </form>
+        <Button classType={linkType} title="log in" />
       </div>
     </div>
   );
