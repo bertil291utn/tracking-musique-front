@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../styled-components/button';
 import Input from '../styled-components/input';
-import styles from './signup.module.scss';
+import styles from './login.module.scss';
 
-const SignUp = () => {
+const LogIn = () => {
   const { background, container } = styles;
-  const initialForm = { name: '', email: '', password: '' };
+  const initialForm = { email: '', password: '' };
   const [form, setForm] = useState(initialForm);
 
   const handleSubmit = e => {
@@ -28,12 +28,6 @@ const SignUp = () => {
       <div className={container}>
         <form onSubmit={handleSubmit}>
           <Input
-            placeholder="Name"
-            name="name"
-            value={form.name}
-            onchange={handleInputChange}
-          />
-          <Input
             placeholder="Email"
             name="email"
             type="email"
@@ -47,14 +41,14 @@ const SignUp = () => {
             value={form.password}
             onchange={handleInputChange}
           />
-          <Button classType="primary" title="sign up" submit />
+          <Button classType="primary" title="log in" submit />
         </form>
-        <Link to="/login">
-          <Button classType="secondary" title="log in" />
+        <Link to="/signup">
+          <Button classType="secondary" title="sign up" />
         </Link>
       </div>
     </div>
   );
 };
 
-export default SignUp;
+export default LogIn;
