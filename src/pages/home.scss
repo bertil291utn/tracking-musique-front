@@ -1,0 +1,26 @@
+.container {
+  padding: 1rem 2rem;
+  // height: 90vh;
+
+  .artists-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .header {
+    position: relative;
+
+    h3 {
+      text-align: center;
+    }
+  }
+
+  .svg-icon {
+    cursor: pointer;
+    height: 1.5rem;
+    position: absolute;
+    width: 10%;
+  }
+}

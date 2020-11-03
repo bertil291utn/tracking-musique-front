@@ -4,6 +4,7 @@ import Splash from '../pages/splash';
 import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
+import Home from '../pages/home';
 
 const App = () => {
   const { background } = styles;
@@ -13,6 +14,7 @@ const App = () => {
         <Switch>
           <Route exact path="/signup" component={SignUp} />
           <Route exact path="/login" component={LogIn} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/" component={Splash} />
           {/* <Route component={NotFound} /> */}
         </Switch>

@@ -1,0 +1,16 @@
+@import '../styles/colors';
+
+.content-items {
+  text-align: center;
+
+  img {
+    border-radius: 18px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: $secondary;
+  }
+}
