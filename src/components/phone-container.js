@@ -16,7 +16,7 @@ const PhoneContainer = ({ children, tabActive }) => (
 
 PhoneContainer.propTypes = {
   tabActive: PropTypes.string.isRequired,
-  children: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default PhoneContainer;

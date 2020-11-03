@@ -1,23 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import PhoneContainer from '../components/phone-container';
 import './artist-info.scss';
 
 const ArtistInfo = ({ location }) => {
   const { state } = location;
   const {
-    photoUrl,
+    photoUrlCover,
     artistName,
   } = state;
 
+  const backgroundImage = {
+    background: `url(${photoUrlCover})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '300px',
+  };
+
   return (
-    <div className="artist-info-container">
-      <div className="artist-info-content">
-        <div className="header-artist-info">
-          <img src={photoUrl} alt={artistName} />
-          <p>{artistName}</p>
-        </div>
+    <PhoneContainer tabActive="1">
+      <div className="header-artist-info">
+        <div className="hero-inner" style={backgroundImage} />
+        <p>{artistName}</p>
       </div>
-    </div>
+    </PhoneContainer>
   );
 };
 
