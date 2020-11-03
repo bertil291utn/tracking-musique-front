@@ -1,24 +1,19 @@
-.container-home {
-  padding: 1rem 2rem;
-  height: 80vh;
-  overflow-y: auto;
+.artists-items {
+  margin-top: 3rem;
+  padding: 0 2rem;
+}
 
-  .artists-items {
-    margin-top: 3rem;
+.header {
+  position: relative;
+
+  h3 {
+    text-align: center;
   }
+}
 
-  .header {
-    position: relative;
-
-    h3 {
-      text-align: center;
-    }
-  }
-
-  .search-icon {
-    cursor: pointer;
-    height: 1.5rem;
-    position: absolute;
-    width: 10%;
-  }
+.search-icon {
+  cursor: pointer;
+  height: 1.5rem;
+  position: absolute;
+  width: 10%;
 }

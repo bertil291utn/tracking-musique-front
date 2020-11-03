@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ArtistItems from '../components/artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
-import TabNavigation from '../components/tab-navigation';
+import PhoneContainer from '../components/phone-container';
 import './home.scss';
 
 const Home = () => {
@@ -58,37 +58,32 @@ const Home = () => {
   ];
 
   return (
-    <div className="home">
-      <div className="container-home">
-        <div className="header">
-          <svg className="search-icon">
-            <use href={`${IconsSvg}#search-symbol`} />
-          </svg>
-          <h3>MY MUSIC</h3>
-        </div>
-        <div className="artists-items">
-          {artistItems.map(elem => (
-            <Link
-              key={elem.id}
-              to={{
-                pathname: `/artists/${elem.id}`,
-                state: { ...elem },
-              }}
-            >
-              <ArtistItems
-                key={elem.id}
-                photoUrl={elem.photoUrl}
-                artistName={elem.artistName}
-                tracks={elem.tracks}
-              />
-            </Link>
-          ))}
-        </div>
+    <PhoneContainer tabActive="1">
+      <div className="header">
+        <svg className="search-icon">
+          <use href={`${IconsSvg}#search-symbol`} />
+        </svg>
+        <h3>MY MUSIC</h3>
       </div>
-      <TabNavigation
-        active="1"
-      />
-    </div>
+      <div className="artists-items">
+        {artistItems.map(elem => (
+          <Link
+            key={elem.id}
+            to={{
+              pathname: `/artists/${elem.id}`,
+              state: { ...elem },
+            }}
+          >
+            <ArtistItems
+              key={elem.id}
+              photoUrl={elem.photoUrl}
+              artistName={elem.artistName}
+              tracks={elem.tracks}
+            />
+          </Link>
+        ))}
+      </div>
+    </PhoneContainer>
   );
 };
 
