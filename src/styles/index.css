@@ -1,7 +1,6 @@
 @font-face {
   font-family: "acremedium";
-  src:
-    url("../assets/fonts/jonathan_ball_-_acre-medium-webfont.woff2") format("woff2"),
+  src: url("../assets/fonts/jonathan_ball_-_acre-medium-webfont.woff2") format("woff2"),
     url("../assets/fonts/jonathan_ball_-_acre-medium-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
@@ -18,4 +17,8 @@ code {
 
 .title {
   font-weight: 700;
+}
+
+a {
+  text-decoration: none;
 }

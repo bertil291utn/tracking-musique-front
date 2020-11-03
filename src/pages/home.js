@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ArtistItems from '../components/artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
-import './home.scss';
 import TabNavigation from '../components/tab-navigation';
+import './home.scss';
 
 const Home = () => {
   const artistItems = [
@@ -67,12 +68,20 @@ const Home = () => {
         </div>
         <div className="artists-items">
           {artistItems.map(elem => (
-            <ArtistItems
+            <Link
               key={elem.id}
-              photoUrl={elem.photoUrl}
-              artistName={elem.artistName}
-              tracks={elem.tracks}
-            />
+              to={{
+                pathname: `/artist/${elem.id}`,
+                state: { ...elem },
+              }}
+            >
+              <ArtistItems
+                key={elem.id}
+                photoUrl={elem.photoUrl}
+                artistName={elem.artistName}
+                tracks={elem.tracks}
+              />
+            </Link>
           ))}
         </div>
       </div>
