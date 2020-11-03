@@ -7,8 +7,8 @@ const ArtistItems = ({ photoUrl, artistName, tracks }) => (
     <div className="content-items">
       <img src={photoUrl} alt={artistName} />
       <div className="info-items">
-        <p className="title">{artistName}</p>
-        <p className="subtitle">{` ${tracks} songs`}</p>
+        <p className="title-artist">{artistName}</p>
+        <p className="subtitle-artist">{` ${tracks} songs`}</p>
       </div>
     </div>
   </div>

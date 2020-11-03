@@ -71,7 +71,7 @@ const Home = () => {
             <Link
               key={elem.id}
               to={{
-                pathname: `/artist/${elem.id}`,
+                pathname: `/artists/${elem.id}`,
                 state: { ...elem },
               }}
             >
