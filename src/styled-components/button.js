@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './button.scss';
 
-const Button = props => {
-  const { classType, title, submit } = props;
-
-  return (
-    <button className={`button ${classType}`} type={submit ? 'submit' : 'button'}>{title.toUpperCase()}</button>
-  );
-};
+const Button = ({ classType, title, submit }) => (
+  <>
+    {submit
+      ? (<button type="submit" className={`button ${classType}`}>{title.toUpperCase()}</button>)
+      : (<button type="button" className={`button ${classType}`}>{title.toUpperCase()}</button>)}
+  </>
+);
 
 Button.propTypes = {
   title: PropTypes.string.isRequired,
