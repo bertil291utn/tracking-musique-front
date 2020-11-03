@@ -1,11 +1,9 @@
-.container {
+.container-home {
   padding: 1rem 2rem;
-  // height: 90vh;
+  height: 80vh;
+  overflow-y: auto;
 
   .artists-items {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 1rem;
     margin-top: 3rem;
   }
 
@@ -17,7 +15,7 @@
     }
   }
 
-  .svg-icon {
+  .search-icon {
     cursor: pointer;
     height: 1.5rem;
     position: absolute;
