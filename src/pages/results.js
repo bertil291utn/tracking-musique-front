@@ -18,7 +18,11 @@ const Results = () => (
             ))}
           </div>
         </div>
-
+        <div className="body-results-page">
+          <div className="card-artist">
+            <p>hola</p>
+          </div>
+        </div>
       </div>
     </div>
   </PhoneContainer>
