@@ -8,6 +8,11 @@ import PhoneContainer from '../components/phone-container';
 const HomeSearch = () => {
   const [form, setForm] = useState({ search: '' });
 
+  const handleSubmit = e => {
+    e.preventDefault();
+    setForm({ search: '' });
+  };
+
   const handleInputChange = target => {
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const { name } = target;
@@ -23,8 +28,7 @@ const HomeSearch = () => {
         <div className="home-search-content">
           <div className="header">
             <ArrowBack path="/artists" />
-            {/* <form onSubmit={handleSubmit}> */}
-            <form>
+            <form onSubmit={handleSubmit}>
               <Input
                 placeholder="Search artist"
                 name="search"
