@@ -1,0 +1,25 @@
+@import '../styles/colors';
+
+.results-content {
+  padding: 1rem 2rem;
+
+  .popular-artists {
+    display: flex;
+    justify-content: space-between;
+    overflow-x: auto;
+  }
+
+  .popular-artists-element {
+    text-align: center;
+    margin-right: 1.75rem;
+
+    p {
+      font-size: 0.7rem;
+      color: $secondary;
+    }
+
+    img {
+      border-radius: 50%;
+    }
+  }
+}
