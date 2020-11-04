@@ -27,6 +27,26 @@ export default [
       hours: 12,
       days: 'FRI',
     },
+    tracking: [
+      {
+        id: 1,
+        trackName: 'Alors on Dans',
+        date: '2020-11-04 11:04:44 UTC',
+        hours: 3,
+      },
+      {
+        id: 2,
+        trackName: 'Alors on Dans',
+        date: '2020-11-04 11:04:44 UTC',
+        hours: 3,
+      },
+      {
+        id: 3,
+        trackName: 'Alors on Dans',
+        date: '2020-11-04 11:04:44 UTC',
+        hours: 3,
+      },
+    ],
   },
   {
     id: 2,

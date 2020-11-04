@@ -1,0 +1,43 @@
+@import "../styles/colors";
+
+.result-track-content-body {
+  padding: 4rem 2rem 2rem;
+
+  h2 {
+    text-align: center;
+  }
+
+  .result-tracking-item {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 0.1fr;
+    margin-top: 2rem;
+
+    .date {
+      h4 {
+        margin: 0.5rem 0;
+      }
+
+      p {
+        font-size: 0.8rem;
+        color: $secondary;
+      }
+    }
+  }
+
+  .pick-date {
+    display: grid;
+    grid-template-columns: 0.25fr 0.25fr 0.25fr;
+    justify-content: center;
+    margin-top: 3rem;
+    text-align: center;
+
+    .icon {
+      height: 1rem;
+    }
+
+    .right-arrow-icon {
+      transform: rotate(180deg);
+    }
+  }
+}
