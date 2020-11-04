@@ -26,7 +26,6 @@ const Home = () => (
           }}
         >
           <ArtistItems
-            key={elem.id}
             photoUrl={elem.photoUrlIcon}
             artistName={elem.artistName}
             tracks={elem.tracks}

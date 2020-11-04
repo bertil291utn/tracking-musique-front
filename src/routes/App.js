@@ -8,6 +8,7 @@ import Home from '../pages/home';
 import ArtistInfo from '../pages/artist-Info';
 import HomeSearch from '../pages/home-search';
 import Results from '../pages/results';
+import ResultTrack from '../pages/result-tracks';
 
 const App = () => {
   const { background } = styles;
@@ -21,6 +22,7 @@ const App = () => {
           <Route exact path="/search" component={HomeSearch} />
           <Route exact path="/results" component={Results} />
           <Route path="/artists/:id" component={ArtistInfo} />
+          <Route path="/results-track/:id" component={ResultTrack} />
           <Route exact path="/" component={Splash} />
           {/* <Route component={NotFound} /> */}
         </Switch>
