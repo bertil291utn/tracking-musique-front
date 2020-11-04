@@ -16,6 +16,7 @@
     p {
       font-size: 0.7rem;
       color: $secondary;
+      margin-top: 0.5rem;
     }
 
     img {
@@ -46,11 +47,14 @@
           h3 {
             font-weight: 300;
             font-size: 1.3rem;
+            margin: 0.6rem 0;
           }
 
           span {
+            display: block;
             font-size: 0.6rem;
             font-weight: 600;
+            margin: 0.6rem;
           }
 
           .stats {
@@ -60,5 +64,45 @@
         }
       }
     }
+  }
+}
+
+#colorPink {
+  background-color: $pink;
+
+  h3,
+  p {
+    color: $lettuce;
+  }
+}
+
+#colorDark {
+  background-color: $primary;
+
+  h3,
+  p {
+    color: $lettuce;
+  }
+
+  span {
+    color: $pink;
+  }
+}
+
+#colorGreen {
+  background-color: $green;
+
+  h3,
+  p {
+    color: $lettuce;
+  }
+}
+
+#colorLettuce {
+  background-color: $lettuce;
+
+  h3,
+  p {
+    color: $pink;
   }
 }

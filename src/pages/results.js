@@ -4,10 +4,8 @@ import artistItems from '../assets/artistItems';
 import './results.scss';
 
 const Results = () => {
-  const styles = {
-    background: 'red',
-  };
-
+  const arrayColors = ['colorPink', 'colorLettuce', 'colorDark', 'colorGreen'];
+  let arrayColorsIndex = -1;
   return (
     <PhoneContainer tabActive="2">
       <div className="results-page">
@@ -24,35 +22,38 @@ const Results = () => {
             </div>
           </div>
           <div className="body-results-page">
-            {artistItems.map(elem => (
-              <div key={elem.id} style={styles} className="card-artist-container">
-                <div className="card-artist-content">
-                  <img src={elem.photoUrlIcon} alt={elem.artistName} width="120" />
-                  <div className="info-artista">
-                    <h3>{elem.artistName}</h3>
-                    <div className="stats">
-                      <div className="stream">
-                        <span>STREAMS</span>
-                        <p>{elem.stats.streams}</p>
-                      </div>
-                      <div className="hours">
-                        <span>HOURS</span>
-                        <p>{elem.stats.hours}</p>
-                      </div>
-                      <div className="days">
-                        <span>DAYS</span>
-                        <p>{elem.stats.days}</p>
+            {artistItems.map((elem, index) => {
+              if (index === arrayColors.length) arrayColorsIndex = -1;
+              arrayColorsIndex += 1;
+              return (
+                <div key={elem.id} id={arrayColors[arrayColorsIndex]} className="card-artist-container">
+                  <div className="card-artist-content">
+                    <img src={elem.photoUrlIcon} alt={elem.artistName} width="120" />
+                    <div className="info-artista">
+                      <h3>{elem.artistName}</h3>
+                      <div className="stats">
+                        <div className="stream">
+                          <span>STREAMS</span>
+                          <p>{elem.stats.streams}</p>
+                        </div>
+                        <div className="hours">
+                          <span>HOURS</span>
+                          <p>{elem.stats.hours}</p>
+                        </div>
+                        <div className="days">
+                          <span>DAYS</span>
+                          <p>{elem.stats.days}</p>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
     </PhoneContainer>
   );
 };
-
 export default Results;
