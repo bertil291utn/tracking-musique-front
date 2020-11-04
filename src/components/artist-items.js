@@ -8,7 +8,7 @@ const ArtistItems = ({ photoUrl, artistName, tracks }) => (
       <img src={photoUrl} alt={artistName} />
       <div className="info-items">
         <p className="title-artist">{artistName}</p>
-        <p className="subtitle-artist">{` ${tracks} songs`}</p>
+        {tracks !== 0 && (<p className="subtitle-artist">{` ${tracks} songs`}</p>)}
       </div>
     </div>
   </div>
@@ -17,7 +17,11 @@ const ArtistItems = ({ photoUrl, artistName, tracks }) => (
 ArtistItems.propTypes = {
   photoUrl: PropTypes.string.isRequired,
   artistName: PropTypes.string.isRequired,
-  tracks: PropTypes.number.isRequired,
+  tracks: PropTypes.number,
+};
+
+ArtistItems.defaultProps = {
+  tracks: 0,
 };
 
 export default ArtistItems;

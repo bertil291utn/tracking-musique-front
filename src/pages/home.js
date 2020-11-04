@@ -85,9 +85,11 @@ const Home = () => {
   return (
     <PhoneContainer tabActive="1">
       <div className="header">
-        <svg className="search-icon">
-          <use href={`${IconsSvg}#search-symbol`} />
-        </svg>
+        <Link to="/search">
+          <svg className="search-icon">
+            <use href={`${IconsSvg}#search-symbol`} />
+          </svg>
+        </Link>
         <h3>MY MUSIC</h3>
       </div>
       <div className="artists-items">
