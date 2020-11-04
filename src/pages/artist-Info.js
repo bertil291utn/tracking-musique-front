@@ -8,8 +8,9 @@ import './artist-info.scss';
 const ArtistInfo = ({ location }) => {
   const { state } = location;
   const {
-    photoUrlCover,
     artistName,
+    photoUrlCover,
+    popular,
   } = state;
 
   const backgroundImage = {
@@ -30,6 +31,18 @@ const ArtistInfo = ({ location }) => {
           </svg>
         </Link>
         <p>{artistName}</p>
+      </div>
+      <div className="body-artist-info">
+        <h3>Popular</h3>
+        <div className="popular-items">
+          {popular.map(elem => (
+            <div key={elem.id} className="track-item">
+              <span>{elem.id}</span>
+              <img src={elem.albumImage} alt={elem.trackName} width="45" />
+              <p>{elem.trackName}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </PhoneContainer>
   );

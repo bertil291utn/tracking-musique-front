@@ -1,4 +1,3 @@
-
 .header-artist-info {
   position: relative;
 
@@ -32,5 +31,24 @@
     position: absolute;
     top: 20px;
     width: 10%;
+  }
+}
+
+.body-artist-info {
+  padding: 1rem 2rem;
+
+  h3 {
+    text-align: center;
+  }
+}
+
+.popular-items {
+  margin-top: 2rem;
+
+  .track-item {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 0.15fr 0.25fr 1fr;
+    margin: 1rem;
   }
 }

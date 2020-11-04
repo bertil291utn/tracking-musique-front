@@ -13,6 +13,23 @@ const Home = () => {
       photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
       artistName: 'Martin Garrix',
       tracks: 3,
+      popular: [
+        {
+          id: 1,
+          trackName: 'StarBoy',
+          albumImage: 'https://www.elquintobeatle.com/wp-content/uploads/2017/01/the-weeknd-starboy-1.jpg',
+        },
+        {
+          id: 2,
+          trackName: 'StarBoy',
+          albumImage: 'https://www.elquintobeatle.com/wp-content/uploads/2017/01/the-weeknd-starboy-1.jpg',
+        },
+        {
+          id: 3,
+          trackName: 'StarBoy',
+          albumImage: 'https://www.elquintobeatle.com/wp-content/uploads/2017/01/the-weeknd-starboy-1.jpg',
+        },
+      ],
     },
     {
       id: 2,
