@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Link, Redirect } from 'react-router-dom';
+import store from 'store';
 import Button from '../components/button';
 import Input from '../components/input';
+import isLoggedIn from '../helpers/isLoggedIn';
 import styles from './login.module.scss';
 
-const LogIn = () => {
+const LogIn = ({ history }) => {
   const { background, container } = styles;
-  const initialForm = { email: '', password: '' };
+  const initialForm = { email: '', password: '', error: false };
   const [form, setForm] = useState(initialForm);
 
   const handleSubmit = e => {
     e.preventDefault();
-    setForm(initialForm);
+    const { email, password } = form;
+    setForm({ error: false });
+    if (!(email === 'george@email.com' && password === '123456')) {
+      return setForm({ error: true });
+    }
+
+    store.set('loggedIn', true);
+    history.push('/');
+
+    return setForm(initialForm);
   };
 
   const handleInputChange = target => {
@@ -23,10 +35,17 @@ const LogIn = () => {
     });
   };
 
+  if (isLoggedIn()) {
+    return <Redirect to="/" />;
+  }
+
   return (
     <div className={background}>
       <div className={container}>
         <form onSubmit={handleSubmit}>
+          {form.error && (
+            <p>Invalid email/password. Try again!</p>
+          )}
           <Input
             placeholder="Email"
             name="email"
@@ -49,6 +68,10 @@ const LogIn = () => {
       </div>
     </div>
   );
+};
+
+LogIn.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
 };
 
 export default LogIn;

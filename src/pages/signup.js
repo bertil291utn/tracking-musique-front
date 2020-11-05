@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '../components/button';
 import Input from '../components/input';
+import isLoggedIn from '../helpers/isLoggedIn';
 import styles from './signup.module.scss';
 
 const SignUp = () => {
@@ -22,6 +23,10 @@ const SignUp = () => {
       [name]: value,
     });
   };
+
+  if (isLoggedIn()) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={background}>
