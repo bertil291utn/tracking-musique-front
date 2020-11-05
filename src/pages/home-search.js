@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import ArtistItems from '../components/artist-items';
 import ArrowBack from '../components/arrow-back';
 import Input from '../components/input';
-import './home-search.scss';
 import PhoneContainer from '../components/phone-container';
+import './home-search.scss';
 
 const HomeSearch = () => {
   const [form, setForm] = useState({ search: '' });
