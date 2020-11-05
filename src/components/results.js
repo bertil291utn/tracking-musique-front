@@ -3,8 +3,8 @@ import { Link, Route } from 'react-router-dom';
 import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
 import ResultTrack from '../pages/result-tracks';
+import TagMessage from './tag-message';
 import './results.scss';
-import NoData from './no-data';
 
 const Results = () => {
   const arrayColors = ['colorPink', 'colorLettuce', 'colorDark', 'colorGreen'];
@@ -69,7 +69,10 @@ const Results = () => {
           </div>
         )
         : (
-          <NoData />
+          <TagMessage
+            title="No data available"
+            subtitle="Search your favorite artist"
+          />
         )}
     </PhoneContainer>
   );

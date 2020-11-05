@@ -24,7 +24,6 @@ const getSpotifyToken = async () => {
   return response.json();
 };
 
-
 const setTokenLocalStorage = async () => {
   const token = await getSpotifyToken();
   localStorage.setItem(TOKEN_VAR, token.access_token);

@@ -5,7 +5,7 @@ import IconsSvg from '../assets/icons/icons.svg';
 import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
 import ArtistInfo from '../pages/artist-Info';
-import NoData from './no-data';
+import TagMessage from './tag-message';
 import './artists.scss';
 
 const Artists = () => (
@@ -43,7 +43,10 @@ const Artists = () => (
         </>
       )
       : (
-        <NoData />
+        <TagMessage
+          title="No data available"
+          subtitle="Search your favorite artist"
+        />
       )}
   </PhoneContainer>
 );

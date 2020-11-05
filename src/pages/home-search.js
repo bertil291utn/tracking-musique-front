@@ -3,6 +3,7 @@ import ArtistItems from '../components/artist-items';
 import ArrowBack from '../components/arrow-back';
 import Input from '../components/input';
 import PhoneContainer from '../components/phone-container';
+import searchArtist from '../logic-operations/Api';
 import './home-search.scss';
 
 const HomeSearch = () => {
@@ -10,6 +11,9 @@ const HomeSearch = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    searchArtist(form.search).then(data => {
+      console.log(data.artists.items);
+    });
     setForm({ search: '' });
   };
 
