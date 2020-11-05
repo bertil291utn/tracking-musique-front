@@ -7,11 +7,15 @@
     text-align: center;
   }
 
+  .result-tracking-info {
+    margin-top: 2rem;
+  }
+
   .result-tracking-item {
     align-items: center;
     display: grid;
     grid-template-columns: 1fr 0.1fr;
-    margin-top: 2rem;
+    margin-bottom: 1rem;
 
     .date {
       h4 {
@@ -27,7 +31,7 @@
 
   .pick-date {
     display: grid;
-    grid-template-columns: 0.25fr 0.25fr 0.25fr;
+    grid-template-columns: 0.25fr 0.5fr 0.25fr;
     justify-content: center;
     margin-top: 3rem;
     text-align: center;

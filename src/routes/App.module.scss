@@ -1,5 +1,7 @@
+@import "../styles/colors";
+
 .background {
-  border: solid 1px red;
+  border: solid 1px $primary;
   margin: 0 auto;
   max-width: 425px;
   overflow-y: hidden;
