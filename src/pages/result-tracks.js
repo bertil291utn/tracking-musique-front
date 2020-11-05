@@ -32,14 +32,26 @@ const ResultTrack = ({ location }) => {
           <div className="result-track-content-body">
             <h2>{artistName}</h2>
             <div className="pick-date">
-              <div className="left-arrow">
-                <svg className="icon left-arrow-icon" onClick={() => setDatesFunction(1)}>
+              <div
+                className="left-arrow"
+                onClick={() => setDatesFunction(1)}
+                onKeyUp={() => { }}
+                role="button"
+                tabIndex="0"
+              >
+                <svg className="icon left-arrow-icon">
                   <use href={`${IconsSvg}#back-arrow`} />
                 </svg>
               </div>
               <div className="text-date">{getMonthString(date)?.toUpperCase()}</div>
-              <div className="right-arrow">
-                <svg className="icon right-arrow-icon" onClick={() => setDatesFunction(2)}>
+              <div
+                className="right-arrow"
+                onClick={() => setDatesFunction(2)}
+                onKeyUp={() => { }}
+                role="button"
+                tabIndex="0"
+              >
+                <svg className="icon right-arrow-icon">
                   <use href={`${IconsSvg}#back-arrow`} />
                 </svg>
               </div>

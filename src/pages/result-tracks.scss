@@ -43,5 +43,15 @@
     .right-arrow-icon {
       transform: rotate(180deg);
     }
+
+    .left-arrow,
+    .right-arrow {
+      cursor: pointer;
+    }
+
+    .left-arrow:focus,
+    .right-arrow:focus {
+      outline: none;
+    }
   }
 }
