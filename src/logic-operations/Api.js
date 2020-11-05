@@ -26,36 +26,25 @@ const getSpotifyToken = async () => {
 
 const setTokenLocalStorage = async () => {
   const token = await getSpotifyToken();
-  localStorage.setItem(TOKEN_VAR, token.access_token);
+  await localStorage.setItem(TOKEN_VAR, token.access_token);
 };
 
-const checkSpotifyToken = async (token = localStorage.getItem(TOKEN_VAR)) => {
+const searchArtist = async artistName => {
+  const tempArtistName = artistName;
+  if (!localStorage.getItem(TOKEN_VAR)) await setTokenLocalStorage();
+  let response;
   const spotifyApi = new SpotifyWebApi();
-  if (!token) await setTokenLocalStorage();
-  spotifyApi.setAccessToken(localStorage.getItem(TOKEN_VAR));
-
+  await spotifyApi.setAccessToken(localStorage.getItem(TOKEN_VAR));
   try {
-    await spotifyApi.searchTracks('test');
+    response = await spotifyApi.searchArtists(artistName);
   } catch (error) {
     const response = JSON.parse(error.response);
     if (response.error.message === 'The access token expired' && response.error.status === 401) {
       await setTokenLocalStorage();
-      checkSpotifyToken();
+      await searchArtist(tempArtistName);
     }
   }
-  return spotifyApi;
-};
-
-const searchArtist = async artistName => {
-  const spotifyApi = await checkSpotifyToken();
-  let data;
-  try {
-    data = await spotifyApi.searchArtists(artistName);
-  } catch (error) {
-    data = error;
-  }
-
-  return data;
+  return response;
 };
 
 export default searchArtist;

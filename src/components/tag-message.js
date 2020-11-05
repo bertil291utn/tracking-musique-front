@@ -6,7 +6,7 @@ const TagMessage = ({ title, subtitle }) => (
   <div className="no-content">
     <div className="no-content-container">
       <h3>{title}</h3>
-      {subtitle && (<p>{subtitle}</p>)}
+      {subtitle !== '' && (<p>{subtitle}</p>)}
     </div>
   </div>
 );
@@ -17,7 +17,7 @@ TagMessage.propTypes = {
 };
 
 TagMessage.defaultProps = {
-  subtitle: false,
+  subtitle: '',
 };
 
 export default TagMessage;
