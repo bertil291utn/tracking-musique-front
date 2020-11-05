@@ -1,17 +1,14 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ArtistItems from './artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
 import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
-import ArtistInfo from '../pages/artist-Info';
 import TagMessage from './tag-message';
 import './artists.scss';
 
 const Artists = () => (
   <PhoneContainer tabActive="1">
-    <Route path="/artists/:artistId" component={ArtistInfo} />
-
     <div className="header">
       <Link to="/artists/search">
         <svg className="search-icon">

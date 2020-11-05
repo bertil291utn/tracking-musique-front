@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
-import ResultTrack from '../pages/result-tracks';
 import TagMessage from './tag-message';
 import './results.scss';
 
@@ -11,7 +10,6 @@ const Results = () => {
   let arrayColorsIndex = -1;
   return (
     <PhoneContainer tabActive="2">
-      <Route path="/results/:id" component={ResultTrack} />
       {artistItems.length !== 0
         ? (
           <div className="results-page">
