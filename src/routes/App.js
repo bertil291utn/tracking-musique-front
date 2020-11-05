@@ -4,9 +4,7 @@ import Splash from '../pages/splash';
 import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
-import ArtistsLayout from '../pages/artistsLayout';
-import Results from '../pages/results';
-import ResultTrack from '../pages/result-tracks';
+import LoginRoutes from './LoginRoutes';
 
 const App = () => {
   const { background } = styles;
@@ -16,10 +14,8 @@ const App = () => {
         <Switch>
           <Route path="/signup" component={SignUp} />
           <Route path="/login" component={LogIn} />
-          <Route path="/results/:id" component={ResultTrack} />
-          <Route path="/results" component={Results} />
           <Route path="/splash" component={Splash} />
-          <Route path="/" component={ArtistsLayout} />
+          <Route path="/" component={LoginRoutes} />
         </Switch>
       </Router>
     </div>

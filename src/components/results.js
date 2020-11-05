@@ -1,7 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PhoneContainer from '../components/phone-container';
+import { Link, Route } from 'react-router-dom';
+import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
+import ResultTrack from '../pages/result-tracks';
 import './results.scss';
 
 const Results = () => {
@@ -9,6 +10,7 @@ const Results = () => {
   let arrayColorsIndex = -1;
   return (
     <PhoneContainer tabActive="2">
+      <Route path="/results/:id" component={ResultTrack} />
       <div className="results-page">
         <div className="results-content">
           <div className="header-results-page">
