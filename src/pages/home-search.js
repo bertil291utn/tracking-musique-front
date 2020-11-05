@@ -27,7 +27,7 @@ const HomeSearch = () => {
       <div className="home-search">
         <div className="home-search-content">
           <div className="header">
-            <ArrowBack path="/artists" />
+            <ArrowBack path="/" />
             <form onSubmit={handleSubmit}>
               <Input
                 placeholder="Search artist"

@@ -24,7 +24,7 @@ const ArtistInfo = ({ location }) => {
     <PhoneContainer tabActive="1">
       <div className="header-artist-info">
         <div className="hero-inner" style={backgroundImage} />
-        <ArrowBack path="/artists" />
+        <ArrowBack path="/" />
         <p>{artistName}</p>
       </div>
       <div className="body-artist-info">

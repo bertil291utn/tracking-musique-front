@@ -8,7 +8,7 @@ const TabNavigation = ({ active }) => (
   <div className="container-tab">
     <div className="content-tab">
       <div className={`icon library ${active === '1' && 'active'}`}>
-        <Link to="/artists">
+        <Link to="/">
           <svg className="library-icon">
             <use href={`${IconsSvg}#library`} />
           </svg>

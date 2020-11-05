@@ -30,7 +30,7 @@ const Results = () => {
                 <Link
                   key={elem.id}
                   to={{
-                    pathname: `/results-track/${elem.id}`,
+                    pathname: `/results/${elem.id}`,
                     state: { ...elem },
                   }}
                 >
