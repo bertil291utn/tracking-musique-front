@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, Route } from 'react-router-dom';
 import PhoneContainer from './phone-container';
-// import artistItems from '../assets/artistItems';
+import artistItems from '../assets/artistItems';
 import ResultTrack from '../pages/result-tracks';
 import './results.scss';
 import NoData from './no-data';
@@ -9,7 +9,6 @@ import NoData from './no-data';
 const Results = () => {
   const arrayColors = ['colorPink', 'colorLettuce', 'colorDark', 'colorGreen'];
   let arrayColorsIndex = -1;
-  const artistItems = [];
   return (
     <PhoneContainer tabActive="2">
       <Route path="/results/:id" component={ResultTrack} />
