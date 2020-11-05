@@ -4,9 +4,9 @@ import ArtistItems from '../components/artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
 import PhoneContainer from '../components/phone-container';
 import artistItems from '../assets/artistItems';
-import './home.scss';
+import './artistsLayout.scss';
 
-const Home = () => (
+const ArtistsLayout = () => (
   <PhoneContainer tabActive="1">
     <div className="header">
       <Link to="/search">
@@ -36,4 +36,4 @@ const Home = () => (
   </PhoneContainer>
 );
 
-export default Home;
+export default ArtistsLayout;

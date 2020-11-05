@@ -4,7 +4,7 @@ import Splash from '../pages/splash';
 import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
-import Home from '../pages/home';
+import ArtistsLayout from '../pages/artistsLayout';
 import ArtistInfo from '../pages/artist-Info';
 import HomeSearch from '../pages/home-search';
 import Results from '../pages/results';
@@ -23,7 +23,7 @@ const App = () => {
           <Route path="/results/:id" component={ResultTrack} />
           <Route exact path="/results" component={Results} />
           <Route exact path="/splash" component={Splash} />
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={ArtistsLayout} />
         </Switch>
       </Router>
     </div>
