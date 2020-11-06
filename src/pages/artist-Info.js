@@ -20,6 +20,11 @@ const ArtistInfo = ({ match }) => {
     });
   }, []);
 
+  const playActivated = trackId => () => {
+    console.log('play activated');
+    console.log(trackId);
+  };
+
   let trackNumber = 0;
   const artistTracks = artist.length !== 0 && tracks.length !== 0;
   return (
@@ -38,9 +43,20 @@ const ArtistInfo = ({ match }) => {
                 {tracks?.map(elem => {
                   trackNumber += 1;
                   return (
-                    <div key={elem.id} className="track-item">
+                    <div
+                      key={elem.id}
+                      className="track-item"
+                      onClick={playActivated(elem.id)}
+                      onKeyUp={() => { }}
+                      role="button"
+                      tabIndex="0"
+                    >
                       <span>{trackNumber}</span>
-                      <img src={elem.album.images?.[elem.album.images.length - 1].url} alt={elem.trackName} width="45" />
+                      <img
+                        src={elem.album.images?.[elem.album.images.length - 1].url}
+                        alt={elem.trackName}
+                        width="45"
+                      />
                       <p>{elem.name}</p>
                     </div>
                   );

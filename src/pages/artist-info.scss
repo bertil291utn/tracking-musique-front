@@ -1,3 +1,5 @@
+@import "../styles/colors";
+
 .header-artist-info {
   position: relative;
 
@@ -49,5 +51,9 @@
     display: grid;
     grid-template-columns: 0.15fr 0.25fr 1fr;
     margin-bottom: 1rem;
+  }
+
+  .track-item:hover {
+    background-color: $light;
   }
 }
