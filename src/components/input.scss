@@ -14,10 +14,6 @@
   width: 324px;
 }
 
-.input:focus {
-  outline: none;
-}
-
 ::placeholder {
   color: $primary;
   opacity: 1; /* Firefox */

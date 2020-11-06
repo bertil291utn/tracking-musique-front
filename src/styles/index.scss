@@ -40,3 +40,7 @@ html {
   width: 0;
   background: transparent; /* make scrollbar transparent */
 }
+
+:focus {
+  outline: none;
+}
