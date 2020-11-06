@@ -32,6 +32,10 @@ const HomeSearch = () => {
     });
   };
 
+  const addToHome = () => {
+    console.log('send to the database');
+  };
+
   return (
     <PhoneContainer tabActive="1">
       <div className="home-search">
@@ -50,11 +54,19 @@ const HomeSearch = () => {
           {result.length !== 0 && !form.loading
             && (
               <div className="body-home-search">
-                <ArtistItems
-                  key={result.id}
-                  photoUrl={result?.images[0]?.url}
-                  artistName={result.name}
-                />
+                <div
+                  className="items-finded"
+                  onClick={() => addToHome}
+                  onKeyUp={() => { }}
+                  role="button"
+                  tabIndex="0"
+                >
+                  <ArtistItems
+                    key={result.id}
+                    photoUrl={result?.images[0]?.url}
+                    artistName={result.name}
+                  />
+                </div>
               </div>
             )}
           {form.loading
