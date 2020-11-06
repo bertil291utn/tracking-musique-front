@@ -24,10 +24,7 @@ const Artists = () => (
             {artistItems.map(elem => (
               <Link
                 key={elem.id}
-                to={{
-                  pathname: `/artists/${elem.id}`,
-                  state: { ...elem },
-                }}
+                to={`/artists/${elem.idString}`}
               >
                 <ArtistItems
                   photoUrl={elem.photoUrlIcon}

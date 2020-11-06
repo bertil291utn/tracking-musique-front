@@ -15,7 +15,7 @@ const LoginRoutes = () => {
     <>
       <Switch>
         <Route path="/artists/search" component={HomeSearch} />
-        <Route path="/artists/:artistId" component={ArtistInfo} />
+        <Route path="/artists/:id" component={ArtistInfo} />
         <Route path="/artists" component={Artists} />
         <Route path="/results/:id" component={ResultTrack} />
         <Route path="/results" component={Results} />

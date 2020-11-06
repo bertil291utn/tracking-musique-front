@@ -4,6 +4,7 @@ export default [
     photoUrlIcon: 'https://pbs.twimg.com/profile_images/1177141140891602944/90VqeVnU.jpg',
     photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
     artistName: 'Martin Garrix',
+    idString: '60d24wfXkVzDSfLS6hyCjZ',
     tracks: 3,
     popular: [
       {
@@ -53,6 +54,7 @@ export default [
     photoUrlIcon: 'https://pbs.twimg.com/profile_images/1243465670454632449/Gm06laC1_400x400.jpg',
     photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
     artistName: 'Dua Lipa',
+    idString: '6M2wZ9GZgrQXHCFfjv46we',
     tracks: 4,
     popular: [
       {
@@ -82,6 +84,7 @@ export default [
     photoUrlIcon: 'https://beatsaver.com/cdn/7d04/99c0882f9d1b22017856ff98cb18aaf994453400.jpg',
     photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
     artistName: 'The Weekend',
+    idString: '1Xyo4u8uXC1ZmMpatF05PJ',
     tracks: 3,
     popular: [
       {
@@ -111,6 +114,7 @@ export default [
     photoUrlIcon: 'https://pbs.twimg.com/profile_images/666578168967512064/VwnIK_32_400x400.png',
     photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
     artistName: 'Calvin Harris',
+    idString: '7CajNmpbOovFoOoasH2HaY',
     tracks: 2,
     popular: [
       {
@@ -140,6 +144,7 @@ export default [
     photoUrlIcon: 'https://c-sf.smule.com/rs-s80/arr/f7/34/aa701486-ab08-4017-b413-748e1fa8a8a9.jpg',
     photoUrlCover: 'https://okdiario.com/img/2020/03/25/martin-garrix.jpg',
     artistName: 'Lana del Rey',
+    idString: '00FQb4jTyendYWaN8pK0wa',
     tracks: 9,
     popular: [
       {
