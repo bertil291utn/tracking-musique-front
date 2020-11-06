@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import ArtistItems from '../components/artist-items';
 import ArrowBack from '../components/arrow-back';
 import Input from '../components/input';
@@ -7,19 +8,20 @@ import searchArtist from '../logic-operations/Api';
 import TagMessage from '../components/tag-message';
 import './home-search.scss';
 
-const HomeSearch = () => {
-  const [form, setForm] = useState({ search: '', loading: null });
+const HomeSearch = ({ history }) => {
+  const initialStateForm = { search: '', loading: false };
+  const [form, setForm] = useState(initialStateForm);
   const [result, setResult] = useState([]);
 
   const handleSubmit = e => {
     e.preventDefault();
+    setResult([]);
     if (form.search !== '') {
-      setForm({ loading: true });
+      setForm({ ...form, loading: true });
       searchArtist(form.search).then(data => {
-        if (data !== null) setForm({ loading: false });
+        if (data !== null) setForm(initialStateForm);
         setResult(data.artists.items[0]);
       });
-      setForm({ search: '' });
     }
   };
 
@@ -34,6 +36,9 @@ const HomeSearch = () => {
 
   const addToHome = () => {
     console.log('send to the database');
+    // loading saving
+    // when is saved push
+    history.push('/artists');
   };
 
   return (
@@ -55,15 +60,14 @@ const HomeSearch = () => {
             && (
               <div className="body-home-search">
                 <div
-                  className="items-finded"
-                  onClick={() => addToHome}
+                  onClick={addToHome}
                   onKeyUp={() => { }}
                   role="button"
                   tabIndex="0"
                 >
                   <ArtistItems
                     key={result.id}
-                    photoUrl={result?.images[0]?.url}
+                    photoUrl={result?.images[result.images.length - 1]?.url}
                     artistName={result.name}
                   />
                 </div>
@@ -77,6 +81,10 @@ const HomeSearch = () => {
       </div>
     </PhoneContainer>
   );
+};
+
+HomeSearch.propTypes = {
+  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
 };
 
 export default HomeSearch;
