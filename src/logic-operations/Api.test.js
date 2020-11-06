@@ -1,4 +1,4 @@
-import { getArtistTopTracks, searchArtist } from './Api';
+import { getArtist, getArtistTopTracks, searchArtist } from './Api';
 
 describe('API#searchArtist', () => {
   test('returns valid object', async () => {
@@ -10,6 +10,13 @@ describe('API#searchArtist', () => {
 describe('API#getArtistTopTracks', () => {
   test('returns valid object', async () => {
     const response = await getArtistTopTracks('60d24wfXkVzDSfLS6hyCjZ');
+    expect(response instanceof Object).toBe(true);
+  });
+});
+
+describe('API#getArtist', () => {
+  test('returns valid object', async () => {
+    const response = await getArtist('60d24wfXkVzDSfLS6hyCjZ');
     expect(response instanceof Object).toBe(true);
   });
 });

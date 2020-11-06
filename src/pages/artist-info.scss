@@ -14,8 +14,15 @@
     width: 100%;
   }
 
+  .hero-inner {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    opacity: 0.5;
+  }
+
   .hero-inner::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -1px;
     left: 0;

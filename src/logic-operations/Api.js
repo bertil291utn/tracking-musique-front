@@ -40,6 +40,17 @@ const searchArtist = async artistName => {
   return response;
 };
 
+const getArtist = async artistId => {
+  let response;
+  const spotifyApi = await initSpotifyObject();
+  try {
+    response = await spotifyApi.getArtist(artistId);
+  } catch (error) {
+    response = error;
+  }
+  return response;
+};
+
 const getArtistTopTracks = async artistId => {
   let response;
   const spotifyApi = await initSpotifyObject();
@@ -51,4 +62,4 @@ const getArtistTopTracks = async artistId => {
   return response;
 };
 
-export { getArtistTopTracks, searchArtist };
+export { getArtist, getArtistTopTracks, searchArtist };
