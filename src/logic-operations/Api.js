@@ -1,7 +1,5 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 
-const TOKEN_VAR = 'temp_token_spotify';
-
 const getSpotifyToken = async () => {
   const myHeaders = new Headers();
   const basic = `Basic ${btoa(`${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`)}`;
@@ -24,25 +22,15 @@ const getSpotifyToken = async () => {
   return response.json();
 };
 
-const setTokenLocalStorage = async () => {
-  const token = await getSpotifyToken();
-  await localStorage.setItem(TOKEN_VAR, token.access_token);
-};
-
 const searchArtist = async artistName => {
-  const tempArtistName = artistName;
-  if (!localStorage.getItem(TOKEN_VAR)) await setTokenLocalStorage();
   let response;
   const spotifyApi = new SpotifyWebApi();
-  await spotifyApi.setAccessToken(localStorage.getItem(TOKEN_VAR));
+  const token = await getSpotifyToken();
+  await spotifyApi.setAccessToken(token.access_token);
   try {
     response = await spotifyApi.searchArtists(artistName);
   } catch (error) {
-    const response = JSON.parse(error.response);
-    if (response.error.message === 'The access token expired' && response.error.status === 401) {
-      await setTokenLocalStorage();
-      await searchArtist(tempArtistName);
-    }
+    response = error;
   }
   return response;
 };
