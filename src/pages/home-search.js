@@ -4,7 +4,7 @@ import ArtistItems from '../components/artist-items';
 import ArrowBack from '../components/arrow-back';
 import Input from '../components/input';
 import PhoneContainer from '../components/phone-container';
-import searchArtist from '../logic-operations/Api';
+import { searchArtist } from '../logic-operations/Api';
 import TagMessage from '../components/tag-message';
 import './home-search.scss';
 

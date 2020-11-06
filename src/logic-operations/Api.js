@@ -22,11 +22,16 @@ const getSpotifyToken = async () => {
   return response.json();
 };
 
-const searchArtist = async artistName => {
-  let response;
+const initSpotifyObject = async () => {
   const spotifyApi = new SpotifyWebApi();
   const token = await getSpotifyToken();
   await spotifyApi.setAccessToken(token.access_token);
+  return spotifyApi;
+};
+
+const searchArtist = async artistName => {
+  let response;
+  const spotifyApi = await initSpotifyObject();
   try {
     response = await spotifyApi.searchArtists(artistName);
   } catch (error) {
@@ -35,4 +40,15 @@ const searchArtist = async artistName => {
   return response;
 };
 
-export default searchArtist;
+const getArtistTopTracks = async artistId => {
+  let response;
+  const spotifyApi = await initSpotifyObject();
+  try {
+    response = await spotifyApi.getArtistTopTracks(artistId, 'ES');
+  } catch (error) {
+    response = error;
+  }
+  return response;
+};
+
+export { getArtistTopTracks, searchArtist };
