@@ -11,6 +11,8 @@ const ArtistInfo = ({ match }) => {
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState([]);
   const [tracks, setTracks] = useState([]);
+  const playerOptionInitial = { player: false, idTrack: '' };
+  const [playerOption, setPlayerOption] = useState(playerOptionInitial);
 
   useEffect(() => {
     Promise.all([getArtist(params.id), getArtistTopTracks(params.id)]).then(data => {
@@ -21,14 +23,13 @@ const ArtistInfo = ({ match }) => {
   }, []);
 
   const playActivated = trackId => () => {
-    console.log('play activated');
-    console.log(trackId);
+    setPlayerOption({ player: true, idTrack: trackId });
   };
 
   let trackNumber = 0;
   const artistTracks = artist.length !== 0 && tracks.length !== 0;
   return (
-    <PhoneContainer tabActive="1">
+    <PhoneContainer tabActive="1" playerActive={playerOption.player} trackId={playerOption.idTrack}>
       {artistTracks && !loading
         && (
           <>
