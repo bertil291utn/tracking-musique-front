@@ -17,10 +17,8 @@ const App = ({
 }) => {
   const { background } = styles;
   const isLoggedIn = IsLoggedIn();
-  // get from redux variable store.get(storeKeys.SET_LOGIN)
   setLogin(isLoggedIn.login);
   setUser(isLoggedIn.data.userId);
-  // store.set(storeKeys.SET_LOGIN, isLoggedIn.login);
   return (
     <div className={background}>
       <Router>

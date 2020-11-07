@@ -1,48 +1,84 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { getArtists, getUserArtists } from '../logic-operations/Api';
+
 import ArtistItems from './artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
 import PhoneContainer from './phone-container';
-import artistItems from '../assets/artistItems';
 import TagMessage from './tag-message';
 import './artists.scss';
 
-const Artists = () => (
-  <PhoneContainer tabActive="1">
-    <div className="header">
-      <Link to="/artists/search">
-        <svg className="search-icon">
-          <use href={`${IconsSvg}#search-symbol`} />
-        </svg>
-      </Link>
-      <h3>MY MUSIC</h3>
-    </div>
-    {artistItems.length !== 0
-      ? (
-        <>
-          <div className="artists-items">
-            {artistItems.map(elem => (
-              <Link
-                key={elem.id}
-                to={`/artists/${elem.idString}`}
-              >
-                <ArtistItems
-                  photoUrl={elem.photoUrlIcon}
-                  artistName={elem.artistName}
-                  tracks={elem.tracks}
-                />
-              </Link>
-            ))}
-          </div>
-        </>
-      )
-      : (
-        <TagMessage
-          title="No data available"
-          subtitle="Search your favorite artist"
-        />
-      )}
-  </PhoneContainer>
-);
+const Artists = ({ user }) => {
+  const [artists, setArtists] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (user !== 0) {
+      getUserArtists(user)
+        .then(response => response.data.included.map(tracks => tracks.attributes.id_string))
+        .then(idStrings => {
+          getArtists(idStrings).then(response => {
+            setArtists(response.artists);
+            setLoading(false);
+          });
+        });
+    }
+  }, [user]);
 
-export default Artists;
+  return (
+    <PhoneContainer tabActive="1">
+      <div className="header">
+        <Link to="/artists/search">
+          <svg className="search-icon">
+            <use href={`${IconsSvg}#search-symbol`} />
+          </svg>
+        </Link>
+        <h3>MY MUSIC</h3>
+      </div>
+      {artists.length !== 0 && !loading
+        && (
+          <>
+            <div className="artists-items">
+              {artists.map(elem => (
+                <Link
+                  key={elem.id}
+                  to={`/artists/${elem.id}`}
+                >
+                  <ArtistItems
+                    photoUrl={elem.images?.[elem.images.length - 1].url}
+                    artistName={elem.name}
+                  />
+                </Link>
+              ))}
+            </div>
+          </>
+        )}
+      {artists.length === 0 && loading
+        && (
+          <TagMessage title="Loading..." />
+        )}
+      {artists.length === 0 && !loading
+        && (
+          <TagMessage
+            title="No data available"
+            subtitle="Search your favorite artist"
+          />
+        )}
+    </PhoneContainer>
+  );
+};
+
+Artists.propTypes = {
+  user: PropTypes.number,
+};
+
+Artists.defaultProps = {
+  user: 0,
+};
+
+const mapStateToProps = state => ({
+  user: state.user,
+});
+
+export default connect(mapStateToProps)(Artists);

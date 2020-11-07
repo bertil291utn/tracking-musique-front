@@ -1,5 +1,11 @@
 import {
-  addNewUser, checkValidToken, getToken, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser,
+  checkValidToken,
+  getToken,
+  getUserArtists,
+  getArtist,
+  getArtistTopTracks,
+  searchArtist,
 } from './Api';
 
 describe('API#searchArtist', () => {
@@ -23,7 +29,7 @@ describe('API#getArtist', () => {
   });
 });
 
-describe('API#addUser', () => {
+describe('POST#addUser', () => {
   const user = {
     name: 'Bart McCain',
     email: 'bart@email.com',
@@ -45,7 +51,7 @@ describe('API#addUser', () => {
   });
 });
 
-describe('API#checkValidToken', () => {
+describe('POST#checkValidToken', () => {
   test('should a message as valid token ', () => {
     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MywiZXhwIjoxNjA0ODAzMzcxfQ.2iTRelH7Jyv2GqaJsFZQwLf7juMaZ8AvLuW7W4fYHUA';
     checkValidToken(token).then(response => {
@@ -55,7 +61,7 @@ describe('API#checkValidToken', () => {
   });
 });
 
-describe('API#getToken', () => {
+describe('POST#getToken', () => {
   test('should return same email as argument', () => {
     const user = {
       email: 'bart@email.com',
@@ -64,6 +70,14 @@ describe('API#getToken', () => {
     getToken(user).then(response => {
       const { data } = response;
       expect(data.email).toEqual(user.email);
+    });
+  });
+});
+
+describe('GET#getUserArtists', () => {
+  test('should return success state', () => {
+    getUserArtists(37).then(response => {
+      expect(response).toEqual(200);
     });
   });
 });

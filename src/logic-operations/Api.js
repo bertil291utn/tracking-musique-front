@@ -53,6 +53,17 @@ const getArtist = async artistId => {
   return response;
 };
 
+const getArtists = async artistsIdArray => {
+  let response;
+  const spotifyApi = await initSpotifyObject();
+  try {
+    response = await spotifyApi.getArtists(artistsIdArray);
+  } catch (error) {
+    response = error;
+  }
+  return response;
+};
+
 const getArtistTopTracks = async artistId => {
   let response;
   const spotifyApi = await initSpotifyObject();
@@ -120,6 +131,25 @@ const getToken = async ({ email, password }) => {
   return { data, status: response.status };
 };
 
+const getUserArtists = async userId => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const url = `${BASE_URL}/user_artists/${userId}`;
+  const response = await fetch(url, requestOptions);
+  const data = await response?.json();
+  return { data, status: response.status };
+};
+
 export {
-  addNewUser, checkValidToken, getToken, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser,
+  checkValidToken,
+  getToken,
+  getUserArtists,
+  getArtist,
+  getArtists,
+  getArtistTopTracks,
+  searchArtist,
 };
