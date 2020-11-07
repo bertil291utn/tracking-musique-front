@@ -85,6 +85,21 @@ const addNewUser = async (name, email, password) => {
   return response.json();
 };
 
+const checkValidToken = async token => {
+  const headers = new Headers();
+  headers.append('Authorization', token);
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    redirect: 'follow',
+  };
+
+  const url = `${BASE_URL}/valid_token`;
+  const response = await fetch(url, requestOptions);
+  return response.json();
+};
+
 export {
-  addNewUser, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser, checkValidToken, getArtist, getArtistTopTracks, searchArtist,
 };

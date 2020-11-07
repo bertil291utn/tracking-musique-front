@@ -1,5 +1,5 @@
 import {
-  addNewUser, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser, checkValidToken, getArtist, getArtistTopTracks, searchArtist,
 } from './Api';
 
 describe('API#searchArtist', () => {
@@ -33,6 +33,15 @@ describe('API#addUser', () => {
     const { name, email, password } = user;
     addNewUser(name, email, password).then(response => {
       expect(response.data.attributes.name).toEqual(name);
+    });
+  });
+});
+
+describe('API#checkValidToken', () => {
+  test('should ', () => {
+    const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MywiZXhwIjoxNjA0ODAzMzcxfQ.2iTRelH7Jyv2GqaJsFZQwLf7juMaZ8AvLuW7W4fYHUA';
+    checkValidToken(token).then(response => {
+      expect(response.message).toEqual('Valid token');
     });
   });
 });
