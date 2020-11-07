@@ -9,7 +9,7 @@ import ResultTrack from '../pages/result-tracks';
 import storeKeys from '../assets/storeKeys';
 
 const LoginRoutes = () => {
-  // onne time and send to redux variable
+  // get from redux variable store.get(storeKeys.SET_LOGIN)
   if (!store.get(storeKeys.SET_LOGIN)) {
     return <Redirect to="/splash" />;
   }

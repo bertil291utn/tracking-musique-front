@@ -11,10 +11,9 @@ import IsLoggedIn from './IsLoggedIn';
 
 const App = () => {
   const { background } = styles;
-  (async () => {
-    const isLoggedIn = await IsLoggedIn();
-    store.set(storeKeys.SET_LOGIN, isLoggedIn);
-  })();
+  const isLoggedIn = IsLoggedIn();
+  // get from redux variable store.get(storeKeys.SET_LOGIN)
+  store.set(storeKeys.SET_LOGIN, isLoggedIn);
   return (
     <div className={background}>
       <Router>
