@@ -1,13 +1,18 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import store from 'store';
 import Splash from '../pages/splash';
 import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
 import LoginRoutes from './LoginRoutes';
+import storeKeys from '../assets/storeKeys';
+import IsLoggedIn from './IsLoggedIn';
 
 const App = () => {
   const { background } = styles;
+  const isLoggedIn = IsLoggedIn();
+  store.set(storeKeys.SET_LOGIN, isLoggedIn);
   return (
     <div className={background}>
       <Router>

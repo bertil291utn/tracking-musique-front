@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
+import store from 'store';
+import storeKeys from '../assets/storeKeys';
 import Button from '../components/button';
-import isLoggedIn from '../helpers/isLoggedIn';
 import styles from './splash.module.scss';
 
 const Splash = () => {
   const { background, container } = styles;
-  if (isLoggedIn()) {
+  if (store.get(storeKeys.SET_LOGIN)) {
     return <Redirect to="/artists" />;
   }
   return (

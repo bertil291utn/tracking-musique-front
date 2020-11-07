@@ -81,8 +81,7 @@ const addNewUser = async ({ name, email, password }) => {
   };
 
   const url = `${BASE_URL}/users`;
-  const response = await fetch(url, requestOptions);
-  return { status: response.status, data: response.json() };
+  return fetch(url, requestOptions);
 };
 
 const checkValidToken = async token => {
@@ -96,8 +95,7 @@ const checkValidToken = async token => {
   };
 
   const url = `${BASE_URL}/valid_token`;
-  const response = await fetch(url, requestOptions);
-  return response.json();
+  return fetch(url, requestOptions);
 };
 
 const getToken = async ({ email, password }) => {

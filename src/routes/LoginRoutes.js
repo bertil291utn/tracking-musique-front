@@ -1,14 +1,18 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import store from 'store';
 import Artists from '../components/artists';
-import isLoggedIn from '../helpers/isLoggedIn';
 import HomeSearch from '../pages/home-search';
 import Results from '../components/results';
 import ArtistInfo from '../pages/artist-Info';
 import ResultTrack from '../pages/result-tracks';
+import storeKeys from '../assets/storeKeys';
+// import IsLoggedIn fro './IsLoggedIn';
 
 const LoginRoutes = () => {
-  if (!isLoggedIn()) {
+  // const isLoggedIn = IsLoggedIn();
+  // onne time and send to redux variable
+  if (!store.get(storeKeys.SET_LOGIN)) {
     return <Redirect to="/splash" />;
   }
   return (

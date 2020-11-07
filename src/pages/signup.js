@@ -4,16 +4,17 @@ import { Link, Redirect } from 'react-router-dom';
 import store from 'store';
 import Button from '../components/button';
 import Input from '../components/input';
-import isLoggedIn from '../helpers/isLoggedIn';
 import { addNewUser, getToken } from '../logic-operations/Api';
-import TOKEN_VAR from '../assets/TOKEN_VAR';
+import storeKeys from '../assets/storeKeys';
 import styles from './signup.module.scss';
 import TagMessage from '../components/tag-message';
 
 const SignUp = ({ history }) => {
   const { background, container } = styles;
   const [loading, setLoading] = useState(false);
-  const initialForm = { name: '', email: '', password: '' };
+  const initialForm = {
+    name: '', email: '', password: '', error: false,
+  };
   const [form, setForm] = useState(initialForm);
 
   const handleSubmit = async e => {
@@ -24,12 +25,12 @@ const SignUp = ({ history }) => {
       const userResponse = await addNewUser(form);
       if (userResponse.status === 201) {
         const responseToken = await getToken(form);
-        store.set(TOKEN_VAR, responseToken.token);
-        store.set('loggedIn', true);
+        store.set(storeKeys.TOKEN_VAR, responseToken.token);
+        store.set(storeKeys.SET_LOGIN, true);
         setForm(initialForm);
-        setLoading(false);
         history.push('/');
-      }
+      } else if (userResponse.status === 422) setForm({ error: true });
+      setLoading(false);
     }
   };
 
@@ -42,7 +43,7 @@ const SignUp = ({ history }) => {
     });
   };
 
-  if (isLoggedIn()) {
+  if (store.get(storeKeys.SET_LOGIN)) {
     return <Redirect to="/artists" />;
   }
 
@@ -52,6 +53,9 @@ const SignUp = ({ history }) => {
         ? (
           <div className={container}>
             <form onSubmit={handleSubmit}>
+              {form.error && (
+                <p>Email already exists</p>
+              )}
               <Input
                 placeholder="Name"
                 name="name"

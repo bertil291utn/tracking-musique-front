@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
 import store from 'store';
+import { Link, Redirect } from 'react-router-dom';
 import Button from '../components/button';
 import Input from '../components/input';
-import isLoggedIn from '../helpers/isLoggedIn';
 import styles from './login.module.scss';
+import storeKeys from '../assets/storeKeys';
 
 const LogIn = ({ history }) => {
   const { background, container } = styles;
@@ -20,7 +20,6 @@ const LogIn = ({ history }) => {
       return setForm({ error: true });
     }
 
-    store.set('loggedIn', true);
     history.push('/');
 
     return setForm(initialForm);
@@ -34,8 +33,7 @@ const LogIn = ({ history }) => {
       [name]: value,
     });
   };
-
-  if (isLoggedIn()) {
+  if (store.get(storeKeys.SET_LOGIN)) {
     return <Redirect to="/artists" />;
   }
 
