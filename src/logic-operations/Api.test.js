@@ -1,5 +1,5 @@
 import {
-  addNewUser, checkValidToken, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser, checkValidToken, getToken, getArtist, getArtistTopTracks, searchArtist,
 } from './Api';
 
 describe('API#searchArtist', () => {
@@ -24,24 +24,42 @@ describe('API#getArtist', () => {
 });
 
 describe('API#addUser', () => {
+  const user = {
+    name: 'Bart McCain',
+    email: 'bart@email.com',
+    password: 'B123456',
+  };
+
   test('should return the name', () => {
-    const user = {
-      name: 'Bart McCain',
-      email: 'bart@email.com',
-      password: 'B123456',
-    };
-    const { name, email, password } = user;
-    addNewUser(name, email, password).then(response => {
-      expect(response.data.attributes.name).toEqual(name);
+    addNewUser(user).then(response => {
+      expect(response.data.data.attributes.name).toEqual(user.name);
+    });
+  });
+
+  test('should return 200 status', () => {
+    addNewUser(user).then(response => {
+      expect(response.status).toEqual(200);
     });
   });
 });
 
 describe('API#checkValidToken', () => {
-  test('should ', () => {
+  test('should a message as valid token ', () => {
     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MywiZXhwIjoxNjA0ODAzMzcxfQ.2iTRelH7Jyv2GqaJsFZQwLf7juMaZ8AvLuW7W4fYHUA';
     checkValidToken(token).then(response => {
       expect(response.message).toEqual('Valid token');
+    });
+  });
+});
+
+describe('API#getToken', () => {
+  test('should return same email as argument', () => {
+    const user = {
+      email: 'bart@email.com',
+      password: 'B123456',
+    };
+    getToken(user).then(response => {
+      expect(response.email).toEqual(user.email);
     });
   });
 });

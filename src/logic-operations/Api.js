@@ -64,7 +64,7 @@ const getArtistTopTracks = async artistId => {
   return response;
 };
 
-const addNewUser = async (name, email, password) => {
+const addNewUser = async ({ name, email, password }) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
   const body = JSON.stringify({
@@ -82,7 +82,7 @@ const addNewUser = async (name, email, password) => {
 
   const url = `${BASE_URL}/users`;
   const response = await fetch(url, requestOptions);
-  return response.json();
+  return { status: response.status, data: response.json() };
 };
 
 const checkValidToken = async token => {
@@ -100,6 +100,23 @@ const checkValidToken = async token => {
   return response.json();
 };
 
+const getToken = async ({ email, password }) => {
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+
+  const raw = JSON.stringify({ user: { email, password } });
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body: raw,
+    redirect: 'follow',
+  };
+  const url = `${BASE_URL}/tokens`;
+  const response = await fetch(url, requestOptions);
+  return response.json();
+};
+
 export {
-  addNewUser, checkValidToken, getArtist, getArtistTopTracks, searchArtist,
+  addNewUser, checkValidToken, getToken, getArtist, getArtistTopTracks, searchArtist,
 };
