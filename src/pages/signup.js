@@ -19,8 +19,8 @@ const SignUp = ({ history }) => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const checkEmpty = form.name === '' || form.email === '' || form.password === '';
-    if (!checkEmpty) {
+    const emptyForm = form.name === '' || form.email === '' || form.password === '';
+    if (!emptyForm) {
       setLoading(true);
       const userResponse = await addNewUser(form);
       if (userResponse.status === 201) {

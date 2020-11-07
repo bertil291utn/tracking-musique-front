@@ -11,8 +11,10 @@ import IsLoggedIn from './IsLoggedIn';
 
 const App = () => {
   const { background } = styles;
-  const isLoggedIn = IsLoggedIn();
-  store.set(storeKeys.SET_LOGIN, isLoggedIn);
+  (async () => {
+    const isLoggedIn = await IsLoggedIn();
+    store.set(storeKeys.SET_LOGIN, isLoggedIn);
+  })();
   return (
     <div className={background}>
       <Router>
