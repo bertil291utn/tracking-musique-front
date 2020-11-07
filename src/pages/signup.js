@@ -25,10 +25,12 @@ const SignUp = ({ history }) => {
       const userResponse = await addNewUser(form);
       if (userResponse.status === 201) {
         const responseToken = await getToken(form);
-        store.set(storeKeys.TOKEN_VAR, responseToken.token);
-        store.set(storeKeys.SET_LOGIN, true);
-        setForm(initialForm);
-        history.push('/');
+        if (responseToken.status !== 401) {
+          store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
+          store.set(storeKeys.SET_LOGIN, true);
+          setForm(initialForm);
+          history.push('/');
+        }
       } else if (userResponse.status === 422) setForm({ error: true });
       setLoading(false);
     }

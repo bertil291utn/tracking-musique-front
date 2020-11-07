@@ -32,13 +32,15 @@ describe('API#addUser', () => {
 
   test('should return the name', () => {
     addNewUser(user).then(response => {
-      expect(response.json().data.attributes.name).toEqual(user.name);
+      const { data } = response;
+      expect(data.data.attributes.name).toEqual(user.name);
     });
   });
 
   test('should return 200 status', () => {
     addNewUser(user).then(response => {
-      expect(response.status).toEqual(200);
+      const { status } = response;
+      expect(status).toEqual(200);
     });
   });
 });
@@ -47,7 +49,8 @@ describe('API#checkValidToken', () => {
   test('should a message as valid token ', () => {
     const token = 'eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo0MywiZXhwIjoxNjA0ODAzMzcxfQ.2iTRelH7Jyv2GqaJsFZQwLf7juMaZ8AvLuW7W4fYHUA';
     checkValidToken(token).then(response => {
-      expect(response.json().message).toEqual('Valid token');
+      const { data } = response;
+      expect(data.message).toEqual('Valid token');
     });
   });
 });
@@ -59,7 +62,8 @@ describe('API#getToken', () => {
       password: 'B123456',
     };
     getToken(user).then(response => {
-      expect(response.email).toEqual(user.email);
+      const { data } = response;
+      expect(data.email).toEqual(user.email);
     });
   });
 });
