@@ -6,22 +6,29 @@ import Button from '../components/button';
 import Input from '../components/input';
 import styles from './login.module.scss';
 import storeKeys from '../assets/storeKeys';
+import { getToken } from '../logic-operations/Api';
+import TagMessage from '../components/tag-message';
 
 const LogIn = ({ history }) => {
+  const [loading, setLoading] = useState(false);
+
   const { background, container } = styles;
   const initialForm = { email: '', password: '', error: false };
   const [form, setForm] = useState(initialForm);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const { email, password } = form;
-    setForm({ error: false });
-    if (!(email === 'george@email.com' && password === '123456')) {
-      return setForm({ error: true });
+    const emptyForm = form.email === '' || form.password === '';
+    if (!emptyForm) {
+      setLoading(true);
+      const responseToken = await getToken(form);
+      if (responseToken.status !== 401) {
+        store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
+        store.set(storeKeys.SET_LOGIN, true);
+        setLoading(false);
+        history.push('/');
+      } else setForm({ error: true });
     }
-
-    history.push('/');
-
     return setForm(initialForm);
   };
 
@@ -39,31 +46,35 @@ const LogIn = ({ history }) => {
 
   return (
     <div className={background}>
-      <div className={container}>
-        <form onSubmit={handleSubmit}>
-          {form.error && (
-            <p>Invalid email/password. Try again!</p>
-          )}
-          <Input
-            placeholder="Email"
-            name="email"
-            type="email"
-            value={form.email}
-            onchange={handleInputChange}
-          />
-          <Input
-            placeholder="Password"
-            name="password"
-            type="password"
-            value={form.password}
-            onchange={handleInputChange}
-          />
-          <Button classType="primary" title="log in" submit />
-        </form>
-        <Link to="/signup">
-          <Button classType="secondary" title="sign up" />
-        </Link>
-      </div>
+      {!loading
+        ? (
+          <div className={container}>
+            <form onSubmit={handleSubmit}>
+              {form.error && (
+                <p>Invalid email/password. Try again!</p>
+              )}
+              <Input
+                placeholder="Email"
+                name="email"
+                type="email"
+                value={form.email}
+                onchange={handleInputChange}
+              />
+              <Input
+                placeholder="Password"
+                name="password"
+                type="password"
+                value={form.password}
+                onchange={handleInputChange}
+              />
+              <Button classType="primary" title="log in" submit />
+            </form>
+            <Link to="/signup">
+              <Button classType="secondary" title="sign up" />
+            </Link>
+          </div>
+        )
+        : <TagMessage title="Loading..." />}
     </div>
   );
 };
