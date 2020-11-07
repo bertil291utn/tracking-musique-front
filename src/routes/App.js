@@ -1,19 +1,26 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import store from 'store';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { setLogin, setUser } from '../redux/actions';
+
 import Splash from '../pages/splash';
 import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
 import LoginRoutes from './LoginRoutes';
-import storeKeys from '../assets/storeKeys';
+// import storeKeys from '../assets/storeKeys';
 import IsLoggedIn from './IsLoggedIn';
 
-const App = () => {
+const App = ({
+  setLogin, setUser,
+}) => {
   const { background } = styles;
   const isLoggedIn = IsLoggedIn();
   // get from redux variable store.get(storeKeys.SET_LOGIN)
-  store.set(storeKeys.SET_LOGIN, isLoggedIn);
+  setLogin(isLoggedIn.login);
+  setUser(isLoggedIn.data.userId);
+  // store.set(storeKeys.SET_LOGIN, isLoggedIn.login);
   return (
     <div className={background}>
       <Router>
@@ -28,4 +35,14 @@ const App = () => {
   );
 };
 
-export default App;
+App.propTypes = {
+  setLogin: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = {
+  setLogin,
+  setUser,
+};
+
+export default connect(null, mapDispatchToProps)(App);

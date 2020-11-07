@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-import store from 'store';
-import storeKeys from '../assets/storeKeys';
+// import store from 'store';
+// import storeKeys from '../assets/storeKeys';
 import Button from '../components/button';
 import styles from './splash.module.scss';
 
-const Splash = () => {
+const Splash = ({ login }) => {
   const { background, container } = styles;
-  if (store.get(storeKeys.SET_LOGIN)) {
+  if (login) {
     return <Redirect to="/artists" />;
   }
   return (
@@ -26,4 +28,12 @@ const Splash = () => {
   );
 };
 
-export default Splash;
+Splash.propTypes = {
+  login: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = state => ({
+  login: state.login,
+});
+
+export default connect(mapStateToProps)(Splash);

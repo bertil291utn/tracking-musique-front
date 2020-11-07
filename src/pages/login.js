@@ -2,14 +2,18 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import store from 'store';
 import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import Button from '../components/button';
 import Input from '../components/input';
 import styles from './login.module.scss';
 import storeKeys from '../assets/storeKeys';
 import { getToken } from '../logic-operations/Api';
 import TagMessage from '../components/tag-message';
+import { setLogin, setUser } from '../redux/actions';
 
-const LogIn = ({ history }) => {
+const LogIn = ({
+  history, setLogin, setUser, login,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const { background, container } = styles;
@@ -24,7 +28,9 @@ const LogIn = ({ history }) => {
       const responseToken = await getToken(form);
       if (responseToken.status !== 401) {
         store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
-        store.set(storeKeys.SET_LOGIN, true);
+        setLogin(true);
+        setUser(responseToken.data.userId);
+        // store.set(storeKeys.SET_LOGIN, true);
         setForm(initialForm);
         history.push('/');
       } else setForm({ error: true });
@@ -40,7 +46,8 @@ const LogIn = ({ history }) => {
       [name]: value,
     });
   };
-  if (store.get(storeKeys.SET_LOGIN)) {
+
+  if (login) {
     return <Redirect to="/artists" />;
   }
 
@@ -81,6 +88,18 @@ const LogIn = ({ history }) => {
 
 LogIn.propTypes = {
   history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
+  login: PropTypes.bool.isRequired,
+  setLogin: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
 };
 
-export default LogIn;
+const mapStateToProps = state => ({
+  login: state.login,
+});
+
+const mapDispatchToProps = {
+  setLogin,
+  setUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
