@@ -25,11 +25,11 @@ const LogIn = ({ history }) => {
       if (responseToken.status !== 401) {
         store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
         store.set(storeKeys.SET_LOGIN, true);
-        setLoading(false);
+        setForm(initialForm);
         history.push('/');
       } else setForm({ error: true });
+      setLoading(false);
     }
-    return setForm(initialForm);
   };
 
   const handleInputChange = target => {
