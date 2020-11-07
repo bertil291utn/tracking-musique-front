@@ -1,5 +1,7 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 
+const BASE_URL = 'http://127.0.0.1:3030/api/v1';
+
 const getSpotifyToken = async () => {
   const myHeaders = new Headers();
   const basic = `Basic ${btoa(`${process.env.REACT_APP_CLIENT_ID}:${process.env.REACT_APP_CLIENT_SECRET}`)}`;
@@ -62,4 +64,27 @@ const getArtistTopTracks = async artistId => {
   return response;
 };
 
-export { getArtist, getArtistTopTracks, searchArtist };
+const addNewUser = async (name, email, password) => {
+  const headers = new Headers();
+  headers.append('Content-Type', 'application/json');
+  const body = JSON.stringify({
+    user: {
+      name, email, password,
+    },
+  });
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body,
+    redirect: 'follow',
+  };
+
+  const url = `${BASE_URL}/users`;
+  const response = await fetch(url, requestOptions);
+  return response.json();
+};
+
+export {
+  addNewUser, getArtist, getArtistTopTracks, searchArtist,
+};

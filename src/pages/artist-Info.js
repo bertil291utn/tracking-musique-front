@@ -23,6 +23,7 @@ const ArtistInfo = ({ match }) => {
   }, []);
 
   const playActivated = trackId => () => {
+    console.log('send database minutes');
     setPlayerOption({ player: true, idTrack: trackId });
   };
 
