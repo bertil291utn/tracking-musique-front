@@ -2,13 +2,13 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-// import store from 'store';
+import store from 'store';
 import Artists from '../components/artists';
 import HomeSearch from '../pages/home-search';
 import Results from '../components/results';
 import ArtistInfo from '../pages/artist-Info';
 import ResultTrack from '../pages/result-tracks';
-// import storeKeys from '../assets/storeKeys';
+import storeKeys from '../assets/storeKeys';
 
 const LoginRoutes = ({ login }) => {
   // get from redux variable store.get(storeKeys.SET_LOGIN)
@@ -30,7 +30,11 @@ const LoginRoutes = ({ login }) => {
 };
 
 LoginRoutes.propTypes = {
-  login: PropTypes.bool.isRequired,
+  login: PropTypes.bool,
+};
+const tokenVar = !!store.get(storeKeys.TOKEN_VAR);
+LoginRoutes.defaultProps = {
+  login: tokenVar,
 };
 
 const mapStateToProps = state => ({

@@ -12,20 +12,24 @@ import './artists.scss';
 
 const Artists = ({ user }) => {
   const [artists, setArtists] = useState([]);
+  const [idStrings, setIdStrings] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     if (user !== 0) {
       getUserArtists(user)
         .then(response => response.data.included.map(tracks => tracks.attributes.id_string))
         .then(idStrings => {
-          getArtists(idStrings).then(response => {
-            setArtists(response.artists);
-            setLoading(false);
-          });
+          if (idStrings.length !== 0) {
+            setIdStrings(idStrings);
+            getArtists(idStrings).then(response => {
+              console.log(response);
+              setArtists(response.artists);
+            });
+          }
+          setLoading(false);
         });
     }
   }, [user]);
-
   return (
     <PhoneContainer tabActive="1">
       <div className="header">
@@ -36,7 +40,7 @@ const Artists = ({ user }) => {
         </Link>
         <h3>MY MUSIC</h3>
       </div>
-      {artists.length !== 0 && !loading
+      {idStrings.length !== 0 && !loading
         && (
           <>
             <div className="artists-items">
@@ -54,11 +58,11 @@ const Artists = ({ user }) => {
             </div>
           </>
         )}
-      {artists.length === 0 && loading
+      {idStrings.length === 0 && loading
         && (
           <TagMessage title="Loading..." />
         )}
-      {artists.length === 0 && !loading
+      {idStrings.length === 0 && !loading
         && (
           <TagMessage
             title="No data available"
