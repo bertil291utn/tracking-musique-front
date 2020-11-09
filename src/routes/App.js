@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import store from 'store';
 import { setLogin, setUser } from '../redux/actions';
 
 import Splash from '../pages/splash';
@@ -9,15 +10,28 @@ import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
 import LoginRoutes from './LoginRoutes';
-import IsLoggedIn from './IsLoggedIn';
+import storeKeys from '../assets/storeKeys';
+import { checkValidToken } from '../logic-operations/Api';
 
 const App = ({
   setLogin, setUser,
 }) => {
   const { background } = styles;
-  const isLoggedIn = IsLoggedIn();
-  setLogin(isLoggedIn.login);
-  setUser(isLoggedIn.data.userId);
+  useEffect(() => {
+    const token = store.get(storeKeys.TOKEN_VAR);
+    setLogin(!!token);
+    if (token) {
+      checkValidToken(token).then(response => {
+        if (response.status === 200) {
+          setLogin(true);
+          setUser(response.data.userId);
+        } else {
+          setLogin(false);
+          store.remove(storeKeys.TOKEN_VAR);
+        }
+      });
+    } else setLogin(false);
+  }, []);
   return (
     <div className={background}>
       <Router>
