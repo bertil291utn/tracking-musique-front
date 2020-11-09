@@ -89,9 +89,13 @@ const LogIn = ({
 };
 
 LogIn.propTypes = {
-  login: PropTypes.bool.isRequired,
+  login: PropTypes.bool,
   setLogin: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,
+};
+
+LogIn.defaultProps = {
+  login: !!store.get(storeKeys.TOKEN_VAR),
 };
 
 const mapStateToProps = state => ({
