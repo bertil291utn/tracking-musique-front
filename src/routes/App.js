@@ -9,7 +9,6 @@ import SignUp from '../pages/signup';
 import styles from './App.module.scss';
 import LogIn from '../pages/login';
 import LoginRoutes from './LoginRoutes';
-// import storeKeys from '../assets/storeKeys';
 import IsLoggedIn from './IsLoggedIn';
 
 const App = ({

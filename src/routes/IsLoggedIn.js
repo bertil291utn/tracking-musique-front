@@ -4,7 +4,6 @@ import storeKeys from '../assets/storeKeys';
 import { checkValidToken } from '../logic-operations/Api';
 
 const IsLoggedIn = () => {
-  // get from redux variable store.get(storeKeys.SET_LOGIN)
   const tokenVar = !!store.get(storeKeys.TOKEN_VAR);
   const [checkLogin, setCheckLogin] = useState({ login: tokenVar, data: {} });
   useEffect(() => {
@@ -12,7 +11,7 @@ const IsLoggedIn = () => {
     if (token) {
       checkValidToken(token).then(response => {
         if (response.status === 200) setCheckLogin({ data: response.data, login: true });
-        else setCheckLogin({ ...checkLogin, login: false });
+        else { setCheckLogin({ ...checkLogin, login: false }); store.remove(storeKeys.TOKEN_VAR); }
       });
     } else setCheckLogin({ ...checkLogin, login: false });
   }, []);

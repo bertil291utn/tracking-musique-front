@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link, Redirect } from 'react-router-dom';
-// import store from 'store';
-// import storeKeys from '../assets/storeKeys';
 import Button from '../components/button';
 import styles from './splash.module.scss';
 

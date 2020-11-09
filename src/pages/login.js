@@ -30,12 +30,14 @@ const LogIn = ({
         store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
         setLogin(true);
         setUser(responseToken.data.userId);
-        // store.set(storeKeys.SET_LOGIN, true);
         setForm(initialForm);
+        setLoading(false);
         history.push('/');
       } else setForm({ error: true });
       setLoading(false);
     }
+
+    return {};
   };
 
   const handleInputChange = target => {
