@@ -31,7 +31,7 @@ const LogIn = ({
           store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
           setLogin(true);
           setUser(responseToken.data.userId);
-          history.push('/artists', { from: '/login' });
+          history.push('/artists');
         } else {
           setForm({ error: true });
           setLoading(false);
