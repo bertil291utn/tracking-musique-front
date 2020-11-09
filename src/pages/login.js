@@ -30,10 +30,11 @@ const LogIn = ({
           store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
           setLogin(true);
           setUser(responseToken.data.userId);
-          setForm(initialForm);
           history.push('/artists');
-        } else setForm({ error: true });
-        setLoading(false);
+        } else {
+          setForm({ error: true });
+          setLoading(false);
+        }
       });
     }
   };
