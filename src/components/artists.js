@@ -60,17 +60,21 @@ const Artists = ({ user }) => {
             </div>
           </>
         )}
-      {idStrings.length === 0 && loadingArtists
+      {
+        idStrings.length === 0 && loadingArtists
         && (
           <TagMessage title="LoadingArtists..." />
-        )}
-      {idStrings.length === 0 && !loadingArtists
+        )
+      }
+      {
+        idStrings.length === 0 && !loadingArtists
         && (
           <TagMessage
             title="No data available"
             subtitle="Search your favorite artist"
           />
-        )}
+        )
+      }
     </PhoneContainer>
   );
 };

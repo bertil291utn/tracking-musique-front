@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PhoneContainer from './phone-container';
 import artistItems from '../assets/artistItems';
 import TagMessage from './tag-message';
 import './results.scss';
+// import { getArtistsResult } from '../logic-operations/Api';
 
 const Results = () => {
+  // eslint-disable-next-line no-unused-vars
+  const [results, setResults] = useState([]);
+  useEffect(() => {
+    // getArtistsResult().then(response => {
+    //   console.log(response.data);
+    //   setResults(response.data);
+    // });
+  }, []);
   const arrayColors = ['colorPink', 'colorLettuce', 'colorDark', 'colorGreen'];
   let arrayColorsIndex = -1;
   return (

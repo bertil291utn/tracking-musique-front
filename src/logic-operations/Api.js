@@ -162,7 +162,32 @@ const addUserArtist = async (idString, token) => {
   return { data, status: response.status };
 };
 
+const addUserArtistStats = async (spotifyTrackId, trackName, hours, idString, token) => {
+  const headers = new Headers();
+  headers.append('Authorization', token);
+  headers.append('Content-Type', 'application/json');
+
+  const body = JSON.stringify({
+    stat: {
+      hours, track_name: trackName, spotify_track_id: spotifyTrackId,
+    },
+    id_string: idString,
+  });
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body,
+    redirect: 'follow',
+  };
+  const url = `${BASE_URL}/stats`;
+  const response = await fetch(url, requestOptions);
+  const data = await response?.json();
+  return { data, status: response.status };
+};
+
 export {
+  addUserArtistStats,
   addUserArtist,
   addNewUser,
   checkValidToken,

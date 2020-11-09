@@ -1,18 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import { getArtist, getArtistTopTracks } from '../logic-operations/Api';
+import { useParams } from 'react-router-dom';
+import store from 'store';
+import { addUserArtistStats, getArtist, getArtistTopTracks } from '../logic-operations/Api';
 import ArrowBack from '../components/arrow-back';
 import PhoneContainer from '../components/phone-container';
 import TagMessage from '../components/tag-message';
+import storeKeys from '../assets/storeKeys';
 import './artist-info.scss';
 
-const ArtistInfo = ({ match }) => {
-  const { params } = match;
+const ArtistInfo = () => {
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState([]);
   const [tracks, setTracks] = useState([]);
   const playerOptionInitial = { player: false, idTrack: '' };
   const [playerOption, setPlayerOption] = useState(playerOptionInitial);
+  const params = useParams();
 
   useEffect(() => {
     Promise.all([getArtist(params.id), getArtistTopTracks(params.id)]).then(data => {
@@ -22,9 +24,16 @@ const ArtistInfo = ({ match }) => {
     });
   }, []);
 
-  const playActivated = trackId => () => {
-    console.log('send database minutes');
-    setPlayerOption({ player: true, idTrack: trackId });
+  const playActivated = track => () => {
+    const { id, name } = track;
+    console.log(track);
+    setPlayerOption({ player: true, idTrack: id });
+    addUserArtistStats(id, name, track.duration_ms, artist.id, store.get(storeKeys.TOKEN_VAR))
+      .then(response => {
+        if (response.status === 201) {
+          console.log('stats saved');
+        }
+      });
   };
 
   let trackNumber = 0;
@@ -48,7 +57,7 @@ const ArtistInfo = ({ match }) => {
                     <div
                       key={elem.id}
                       className="track-item"
-                      onClick={playActivated(elem.id)}
+                      onClick={playActivated(elem)}
                       onKeyUp={() => { }}
                       role="button"
                       tabIndex="0"
@@ -75,7 +84,4 @@ const ArtistInfo = ({ match }) => {
   );
 };
 
-ArtistInfo.propTypes = {
-  match: PropTypes.objectOf(PropTypes.objectOf).isRequired,
-};
 export default ArtistInfo;
