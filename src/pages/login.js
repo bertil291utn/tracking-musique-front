@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import store from 'store';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Button from '../components/button';
 import Input from '../components/input';
@@ -12,9 +12,10 @@ import TagMessage from '../components/tag-message';
 import { setLogin, setUser } from '../redux/actions';
 
 const LogIn = ({
-  history, setLogin, setUser, login,
+  setLogin, setUser, login,
 }) => {
   const [loading, setLoading] = useState(false);
+  const history = useHistory();
 
   const { background, container } = styles;
   const initialForm = { email: '', password: '', error: false };
@@ -30,7 +31,7 @@ const LogIn = ({
           store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
           setLogin(true);
           setUser(responseToken.data.userId);
-          history.push('/artists');
+          history.push('/artists', { from: '/login' });
         } else {
           setForm({ error: true });
           setLoading(false);
@@ -88,7 +89,6 @@ const LogIn = ({
 };
 
 LogIn.propTypes = {
-  history: PropTypes.objectOf(PropTypes.objectOf).isRequired,
   login: PropTypes.bool.isRequired,
   setLogin: PropTypes.func.isRequired,
   setUser: PropTypes.func.isRequired,

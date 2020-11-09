@@ -13,7 +13,8 @@ import './artists.scss';
 const Artists = ({ user }) => {
   const [artists, setArtists] = useState([]);
   const [idStrings, setIdStrings] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loadingArtists, setLoadingArtists] = useState(true);
+
   useEffect(() => {
     if (user !== 0) {
       getUserArtists(user)
@@ -22,14 +23,15 @@ const Artists = ({ user }) => {
           if (idStrings.length !== 0) {
             setIdStrings(idStrings);
             getArtists(idStrings).then(response => {
-              console.log(response);
               setArtists(response.artists);
+              setLoadingArtists(false);
             });
           }
-          setLoading(false);
+          setLoadingArtists(false);
         });
     }
   }, [user]);
+
   return (
     <PhoneContainer tabActive="1">
       <div className="header">
@@ -40,7 +42,7 @@ const Artists = ({ user }) => {
         </Link>
         <h3>MY MUSIC</h3>
       </div>
-      {idStrings.length !== 0 && !loading
+      {idStrings.length !== 0 && !loadingArtists
         && (
           <>
             <div className="artists-items">
@@ -58,11 +60,11 @@ const Artists = ({ user }) => {
             </div>
           </>
         )}
-      {idStrings.length === 0 && loading
+      {idStrings.length === 0 && loadingArtists
         && (
-          <TagMessage title="Loading..." />
+          <TagMessage title="LoadingArtists..." />
         )}
-      {idStrings.length === 0 && !loading
+      {idStrings.length === 0 && !loadingArtists
         && (
           <TagMessage
             title="No data available"
