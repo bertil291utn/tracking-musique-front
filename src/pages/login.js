@@ -32,6 +32,7 @@ const LogIn = ({
           setLogin(true);
           setUser(responseToken.data.userId);
           history.push('/artists');
+          history.go(0);
         } else {
           setForm({ error: true });
           setLoading(false);
