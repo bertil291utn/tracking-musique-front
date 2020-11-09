@@ -20,24 +20,22 @@ const LogIn = ({
   const initialForm = { email: '', password: '', error: false };
   const [form, setForm] = useState(initialForm);
 
-  const handleSubmit = async e => {
+  const loginEmail = e => {
     e.preventDefault();
     const emptyForm = form.email === '' || form.password === '';
     if (!emptyForm) {
       setLoading(true);
-      const responseToken = await getToken(form);
-      if (responseToken.status !== 401) {
-        store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
-        setLogin(true);
-        setUser(responseToken.data.userId);
-        setForm(initialForm);
+      getToken(form).then(responseToken => {
+        if (responseToken.status !== 401) {
+          store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
+          setLogin(true);
+          setUser(responseToken.data.userId);
+          setForm(initialForm);
+          history.push('/artists');
+        } else setForm({ error: true });
         setLoading(false);
-        history.push('/');
-      } else setForm({ error: true });
-      setLoading(false);
+      });
     }
-
-    return {};
   };
 
   const handleInputChange = target => {
@@ -58,7 +56,7 @@ const LogIn = ({
       {!loading
         ? (
           <div className={container}>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={loginEmail}>
               {form.error && (
                 <p>Invalid email/password. Try again!</p>
               )}
