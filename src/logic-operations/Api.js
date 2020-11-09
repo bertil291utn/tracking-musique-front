@@ -143,7 +143,27 @@ const getUserArtists = async userId => {
   return { data, status: response.status };
 };
 
+const addUserArtist = async (idString, token) => {
+  const headers = new Headers();
+  headers.append('Authorization', token);
+  headers.append('Content-Type', 'application/json');
+
+  const body = JSON.stringify({ artist: { id_string: idString } });
+
+  const requestOptions = {
+    method: 'POST',
+    headers,
+    body,
+    redirect: 'follow',
+  };
+  const url = `${BASE_URL}/artists`;
+  const response = await fetch(url, requestOptions);
+  const data = await response?.json();
+  return { data, status: response.status };
+};
+
 export {
+  addUserArtist,
   addNewUser,
   checkValidToken,
   getToken,
