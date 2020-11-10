@@ -15,6 +15,7 @@ const ArtistInfo = () => {
   const playerOptionInitial = { player: false, idTrack: '' };
   const [playerOption, setPlayerOption] = useState(playerOptionInitial);
   const params = useParams();
+  const [responseMessage, setResponseMessage] = useState('');
 
   useEffect(() => {
     Promise.all([getArtist(params.id), getArtistTopTracks(params.id)]).then(data => {
@@ -26,12 +27,11 @@ const ArtistInfo = () => {
 
   const playActivated = track => () => {
     const { id, name } = track;
-    console.log(track);
     setPlayerOption({ player: true, idTrack: id });
     addUserArtistStats(id, name, track.duration_ms, artist.id, store.get(storeKeys.TOKEN_VAR))
       .then(response => {
         if (response.status === 201) {
-          console.log('stats saved');
+          setResponseMessage('stats saved');
         }
       });
   };
@@ -49,6 +49,9 @@ const ArtistInfo = () => {
               <ArrowBack path="/artists" />
             </div>
             <div className="body-artist-info">
+              {responseMessage !== '' && (
+                <p>Playing track</p>
+              )}
               <h3>Popular</h3>
               <div className="popular-items">
                 {tracks?.map(elem => {
