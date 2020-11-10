@@ -63,7 +63,7 @@ const Artists = ({ user }) => {
       {
         idStrings.length === 0 && loadingArtists
         && (
-          <TagMessage title="LoadingArtists..." />
+          <TagMessage title="Loading..." />
         )
       }
       {
