@@ -14,7 +14,7 @@
   .result-tracking-item {
     align-items: center;
     display: grid;
-    grid-template-columns: 1fr 0.1fr;
+    grid-template-columns: 1fr 0.5fr;
     margin-bottom: 1rem;
 
     .date {
@@ -26,6 +26,10 @@
         font-size: 0.8rem;
         color: $secondary;
       }
+    }
+
+    .hours {
+      text-align: right;
     }
   }
 
