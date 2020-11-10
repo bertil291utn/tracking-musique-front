@@ -143,12 +143,12 @@ const getUserArtists = async userId => {
   return { data, status: response.status };
 };
 
-const addUserArtist = async (idString, token) => {
+const addUserArtist = async (idString, name, photoUrl, token) => {
   const headers = new Headers();
   headers.append('Authorization', token);
   headers.append('Content-Type', 'application/json');
 
-  const body = JSON.stringify({ artist: { id_string: idString } });
+  const body = JSON.stringify({ artist: { id_string: idString, name, photoUrl } });
 
   const requestOptions = {
     method: 'POST',
@@ -186,13 +186,43 @@ const addUserArtistStats = async (spotifyTrackId, trackName, hours, idString, to
   return { data, status: response.status };
 };
 
+const getArtistStats = async idArtist => {
+  const requestOptions = {
+    method: 'GET',
+    redirect: 'follow',
+  };
+
+  const url = `${BASE_URL}/artists/${idArtist}`;
+  const response = await fetch(url, requestOptions);
+  const data = await response?.json();
+  return { data, status: response.status };
+};
+
+const getUserArtistStats = async userToken => {
+  const headers = new Headers();
+  headers.append('Authorization', userToken);
+
+  const requestOptions = {
+    method: 'GET',
+    headers,
+    redirect: 'follow',
+  };
+
+  const url = `${BASE_URL}/user_artist_stats`;
+  const response = await fetch(url, requestOptions);
+  const data = await response?.json();
+  return { data, status: response.status };
+};
+
 export {
   addUserArtistStats,
   addUserArtist,
   addNewUser,
   checkValidToken,
+  getArtistStats,
   getToken,
   getUserArtists,
+  getUserArtistStats,
   getArtist,
   getArtists,
   getArtistTopTracks,

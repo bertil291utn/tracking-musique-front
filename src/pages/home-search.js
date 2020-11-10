@@ -42,15 +42,18 @@ const HomeSearch = () => {
 
   const addToHome = () => {
     setLoading(true);
-    addUserArtist(result.id, store.get(storeKeys.TOKEN_VAR)).then(response => {
-      if (response.status === 201) {
-        setLoading(false);
-        history.push('/artists');
-      } else {
-        setError(true);
-        setLoading(false);
-      }
-    });
+    const { id, name, images } = result;
+    const photoUrl = images[images.length - 1].url;
+    addUserArtist(id, name, photoUrl, store.get(storeKeys.TOKEN_VAR))
+      .then(response => {
+        if (response.status === 201) {
+          setLoading(false);
+          history.push('/artists');
+        } else {
+          setError(true);
+          setLoading(false);
+        }
+      });
   };
 
   return (
