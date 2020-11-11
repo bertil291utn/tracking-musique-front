@@ -65,7 +65,7 @@ const Results = () => {
                             <div className="stats">
                               <div className="stream">
                                 <span>STREAMS</span>
-                                <p>10</p>
+                                <p>{statsData.length}</p>
                               </div>
                               <div className="hours">
                                 <span>HOURS</span>
