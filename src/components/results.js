@@ -6,7 +6,7 @@ import TagMessage from './tag-message';
 import { getUserArtistStats } from '../logic-operations/Api';
 import storeKeys from '../assets/storeKeys';
 import './results.scss';
-import { hours } from '../logic-operations/artistStats';
+import { days, hours } from '../logic-operations/artistStats';
 
 const Results = () => {
   const [artists, setArtistsData] = useState([]);
@@ -73,7 +73,7 @@ const Results = () => {
                               </div>
                               <div className="days">
                                 <span>DAYS</span>
-                                <p>MON</p>
+                                <p>{days(artistsIncluded, statsData).toUpperCase()}</p>
                               </div>
                             </div>
                           </div>
