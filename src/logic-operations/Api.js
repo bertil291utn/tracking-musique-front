@@ -1,6 +1,6 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 
-const BASE_URL = 'http://127.0.0.1:3030/api/v1';
+const BASE_URL = 'https://stats-musique.herokuapp.com/api/v1';
 
 const getSpotifyToken = async () => {
   const myHeaders = new Headers();
