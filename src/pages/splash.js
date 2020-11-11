@@ -8,7 +8,7 @@ import styles from './splash.module.scss';
 const Splash = ({ login }) => {
   const { background, container } = styles;
   if (login) {
-    return <Redirect to="/artists" />;
+    return <Redirect to="/" />;
   }
   return (
     <div className={background}>

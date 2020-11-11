@@ -31,7 +31,7 @@ const LogIn = ({
           store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
           setLogin(true);
           setUser(responseToken.data.userId);
-          history.push('/artists');
+          history.push('/');
           history.go(0);
         } else {
           setForm({ error: true });
@@ -51,7 +51,7 @@ const LogIn = ({
   };
 
   if (login) {
-    return <Redirect to="/artists" />;
+    return <Redirect to="/" />;
   }
 
   return (

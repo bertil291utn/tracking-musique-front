@@ -48,7 +48,7 @@ const HomeSearch = () => {
       .then(response => {
         if (response.status === 201) {
           setLoading(false);
-          history.push('/artists');
+          history.push('/');
         } else {
           setError(true);
           setLoading(false);
