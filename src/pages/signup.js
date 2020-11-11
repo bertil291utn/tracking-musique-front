@@ -35,6 +35,7 @@ const SignUp = ({
           setUser(responseToken.data.userId);
           setForm(initialForm);
           history.push('/');
+          history.go(0);
         }
       } else if (userResponse.status === 422) setForm({ error: true });
       setLoading(false);
