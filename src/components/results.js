@@ -4,11 +4,13 @@ import store from 'store';
 import PhoneContainer from './phone-container';
 import TagMessage from './tag-message';
 import { getUserArtistStats } from '../logic-operations/Api';
-import './results.scss';
 import storeKeys from '../assets/storeKeys';
+import './results.scss';
+import { hours } from '../logic-operations/artistStats';
 
 const Results = () => {
-  const [artists, setArtists] = useState([]);
+  const [artists, setArtistsData] = useState([]);
+  const [artistsIncluded, setArtistsIncluded] = useState([]);
   const [loadingArtists, setLoadingArtists] = useState(true);
 
   useEffect(() => {
@@ -16,7 +18,8 @@ const Results = () => {
       .then(response => {
         if (response.status === 200) {
           setLoadingArtists(false);
-          setArtists(response.data.data);
+          setArtistsData(response.data.data);
+          setArtistsIncluded(response.data.included);
         }
       });
   }, []);
@@ -48,6 +51,7 @@ const Results = () => {
                   if (index === arrayColors.length) arrayColorsIndex = -1;
                   arrayColorsIndex += 1;
                   const { attributes } = elem;
+                  const { relationships: { stats: { data: statsData } } } = elem;
                   return (
                     <Link
                       key={elem.id}
@@ -65,7 +69,7 @@ const Results = () => {
                               </div>
                               <div className="hours">
                                 <span>HOURS</span>
-                                <p>10</p>
+                                <p>{hours(artistsIncluded, statsData)}</p>
                               </div>
                               <div className="days">
                                 <span>DAYS</span>
