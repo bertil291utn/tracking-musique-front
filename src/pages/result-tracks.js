@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ArrowBack from '../components/arrow-back';
@@ -8,6 +9,8 @@ import './result-tracks.scss';
 import { getArtistStats } from '../logic-operations/Api';
 import toMillisec from '../logic-operations/toMillisec';
 import TagMessage from '../components/tag-message';
+import groupBy from '../logic-operations/groupBy';
+import makeArray from '../logic-operations/makeArray';
 
 const ResultTrack = () => {
   const params = useParams();
@@ -28,7 +31,11 @@ const ResultTrack = () => {
       if (response.status === 200) {
         setLoading(false);
         console.log(response.data);
-        setStats(response.data);
+        let statsGrouped = groupBy(response.data.included, 'spotify_track_id');
+        statsGrouped = makeArray(statsGrouped);
+        console.log(statsGrouped);
+        // setStats({ name: response.data.data.attributes.name, stats });
+        // setStats(reponse.data);
       }
     });
   }, []);
@@ -43,7 +50,7 @@ const ResultTrack = () => {
                 <ArrowBack path="/results" />
               </div>
               <div className="result-track-content-body">
-                <h2>{stats.data.attributes.name}</h2>
+                <h2>{stats.name}</h2>
                 <div className="pick-date">
                   <div
                     className="left-arrow"
