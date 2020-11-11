@@ -6,6 +6,7 @@
 [<div align="center"><img src="https://user-images.githubusercontent.com/24902525/98875879-19dd1b00-244b-11eb-9988-f0678c34ce45.gif" alt="image" width="400" /></div>](https://priceless-clarke-eb1698.netlify.app/)
 
 *Click on the image to go to live demo*
+
 Note: This is only a mobile web app 
 ## Video explanation
 [📽🎬](https://www.loom.com/share/6e32d9765b094861acceb68a27a0ce2c)
