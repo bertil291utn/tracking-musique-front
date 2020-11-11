@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/tracking-musique-front/static/css/main.4f48f6d4.chunk.css",
+    "main.js": "/tracking-musique-front/static/js/main.2a472529.chunk.js",
+    "main.js.map": "/tracking-musique-front/static/js/main.2a472529.chunk.js.map",
+    "runtime-main.js": "/tracking-musique-front/static/js/runtime-main.bebfbde5.js",
+    "runtime-main.js.map": "/tracking-musique-front/static/js/runtime-main.bebfbde5.js.map",
+    "static/js/2.f9afb655.chunk.js": "/tracking-musique-front/static/js/2.f9afb655.chunk.js",
+    "static/js/2.f9afb655.chunk.js.map": "/tracking-musique-front/static/js/2.f9afb655.chunk.js.map",
+    "index.html": "/tracking-musique-front/index.html",
+    "static/css/main.4f48f6d4.chunk.css.map": "/tracking-musique-front/static/css/main.4f48f6d4.chunk.css.map",
+    "static/js/2.f9afb655.chunk.js.LICENSE.txt": "/tracking-musique-front/static/js/2.f9afb655.chunk.js.LICENSE.txt",
+    "static/media/icons.9241ad0c.svg": "/tracking-musique-front/static/media/icons.9241ad0c.svg",
+    "static/media/index.scss": "/tracking-musique-front/static/media/jonathan_ball_-_acre-medium-webfont.e3ba7caf.woff2",
+    "static/media/login.module.scss": "/tracking-musique-front/static/media/signup-back.97bbe198.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.bebfbde5.js",
+    "static/js/2.f9afb655.chunk.js",
+    "static/css/main.4f48f6d4.chunk.css",
+    "static/js/main.2a472529.chunk.js"
+  ]
+}
