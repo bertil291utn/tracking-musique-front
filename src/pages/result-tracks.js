@@ -37,19 +37,17 @@ const ResultTrack = () => {
   const [statsGroup, setStatsGroup] = useState([]);
 
   const setDatesFunction = click => {
-    let dateLoc;
     if (click === 1 && date !== 0) {
       setDate(date - 1);
-      dateLoc = date - 1;
     } else if (click === 2 && date !== 11) {
       setDate(date + 1);
-      dateLoc = date + 1;
-    }
-    if (date <= new Date().getMonth()) {
-      const included = getbyDate(statsGroup, dateLoc);
-      setStats({ ...stats, included });
     }
   };
+
+  useEffect(() => {
+    const included = getbyDate(statsGroup, date);
+    setStats({ ...stats, included });
+  }, [date]);
 
   useEffect(() => {
     getArtistStats(params.id).then(response => {
