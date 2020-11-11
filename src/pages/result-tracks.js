@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ArrowBack from '../components/arrow-back';
@@ -11,6 +10,7 @@ import toMillisec from '../logic-operations/toMillisec';
 import TagMessage from '../components/tag-message';
 import groupBy from '../logic-operations/groupBy';
 import makeArray from '../logic-operations/makeArray';
+import sumTotal from '../logic-operations/sumTotal';
 
 const ResultTrack = () => {
   const params = useParams();
@@ -30,12 +30,9 @@ const ResultTrack = () => {
     getArtistStats(params.id).then(response => {
       if (response.status === 200) {
         setLoading(false);
-        console.log(response.data);
         let statsGrouped = groupBy(response.data.included, 'spotify_track_id');
         statsGrouped = makeArray(statsGrouped);
-        console.log(statsGrouped);
-        // setStats({ name: response.data.data.attributes.name, stats });
-        // setStats(reponse.data);
+        setStats({ name: response.data.data.attributes.name, included: statsGrouped });
       }
     });
   }, []);
@@ -78,15 +75,16 @@ const ResultTrack = () => {
                 </div>
                 <div className="result-tracking-info">
                   {stats.included.map(elem => {
-                    const { attributes } = elem;
+                    const { track } = elem;
+                    const { attributes } = track[0];
                     return (
-                      <div key={elem.id} className="result-tracking-item">
+                      <div key={track[0].id} className="result-tracking-item">
                         <div className="date">
                           <h4>{getFormatDate(attributes.created_at)}</h4>
                           <p>{attributes.track_name}</p>
                         </div>
                         <div className="hours">
-                          <p>{`${toMillisec(attributes.hours)}`}</p>
+                          <p>{`${toMillisec(sumTotal(track))}`}</p>
                         </div>
                       </div>
                     );
