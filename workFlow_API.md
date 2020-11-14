@@ -9,7 +9,7 @@ It's used to sign up component after create a user and returns a user id and a t
 
 
 ### Request a token
-It's used for request ta new token when a user have log out the application. Use in LOg in component 
+It's used for request ta new token when a user have log out the application. Use in Log In component 
 
 
 <div align="center"><img src="https://user-images.githubusercontent.com/24902525/99154194-ef25d900-267b-11eb-839e-1a355c88dda6.png" alt="image" width="600" /></div>
@@ -26,6 +26,6 @@ It's used to:
 
 ## Check valid token 
 
-After the application is closed and we open again we have to check if the token on this application is still valid, because this token could be damaged or could have been expired (works only for 24h) 
+After the application is closed and we open again we have to check if the token on this application is still valid, because this token could be damaged or could have been expired (valid for only 24h) 
 
 <div align="center"><img src="https://user-images.githubusercontent.com/24902525/99154182-cf8eb080-267b-11eb-8f88-d532f1ec6903.png" alt="image" width="600" /></div>
