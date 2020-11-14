@@ -21,6 +21,10 @@ Note: This is only a mobile web app
 - My spotify stats [backend API](https://github.com/bertil291utn/tracking_musique_api/tree/feature/api)
 - Spotify web [library](https://www.npmjs.com/package/spotify-web-api-js)
 
+## Authorization workFlow API diagrams
+
+Check the [documentation](workFlow_API.md)
+
 ## Getting Started
 
 In order to start with this project you need the next:
