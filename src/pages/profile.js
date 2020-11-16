@@ -12,6 +12,7 @@ const Profile = () => {
   const signOut = () => {
     store.remove(storeKeys.TOKEN_VAR);
     history.push('/');
+    history.go(0);
   };
 
   return (
