@@ -9,6 +9,7 @@ import Results from '../components/results';
 import ArtistInfo from '../pages/artist-Info';
 import ResultTrack from '../pages/result-tracks';
 import storeKeys from '../assets/storeKeys';
+import Profile from '../pages/profile';
 
 const LoginRoutes = ({ login }) => {
   if (!login) {
@@ -22,6 +23,7 @@ const LoginRoutes = ({ login }) => {
         <Route path="/artists" component={Artists} />
         <Route path="/results/:id" component={ResultTrack} />
         <Route path="/results" component={Results} />
+        <Route path="/profile" component={Profile} />
         <Route path="/" component={Artists} />
       </Switch>
     </>

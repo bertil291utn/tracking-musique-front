@@ -26,10 +26,12 @@ const TabNavigation = ({ active }) => (
       </div>
 
       <div className={`icon profile ${active === '3' && 'active'}`}>
-        <svg className="profile-icon">
-          <use href={`${IconsSvg}#profile`} />
-        </svg>
-        <span>Profile</span>
+        <Link to="/profile">
+          <svg className="profile-icon">
+            <use href={`${IconsSvg}#profile`} />
+          </svg>
+          <span>Profile</span>
+        </Link>
       </div>
     </div>
   </div>
