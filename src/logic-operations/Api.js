@@ -113,7 +113,7 @@ const checkValidToken = async token => {
   return { data, status: response.status };
 };
 
-const getToken = async ({ email, password }) => {
+const setSession = async ({ email, password }) => {
   const headers = new Headers();
   headers.append('Content-Type', 'application/json');
 
@@ -220,11 +220,11 @@ export {
   addNewUser,
   checkValidToken,
   getArtistStats,
-  getToken,
   getUserArtists,
   getUserArtistStats,
   getArtist,
   getArtists,
   getArtistTopTracks,
   searchArtist,
+  setSession,
 };

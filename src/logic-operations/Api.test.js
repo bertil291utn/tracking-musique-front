@@ -1,7 +1,7 @@
 import {
   addNewUser,
   checkValidToken,
-  getToken,
+  setSession,
   getUserArtists,
   getArtist,
   getArtistTopTracks,
@@ -61,13 +61,13 @@ describe('POST#checkValidToken', () => {
   });
 });
 
-describe('POST#getToken', () => {
+describe('POST#setSession', () => {
   test('should return same email as argument', () => {
     const user = {
       email: 'bart@email.com',
       password: 'B123456',
     };
-    getToken(user).then(response => {
+    setSession(user).then(response => {
       const { data } = response;
       expect(data.email).toEqual(user.email);
     });

@@ -7,7 +7,7 @@ import Button from '../components/button';
 import Input from '../components/input';
 import styles from './login.module.scss';
 import storeKeys from '../assets/storeKeys';
-import { getToken } from '../logic-operations/Api';
+import { setSession } from '../logic-operations/Api';
 import TagMessage from '../components/tag-message';
 import { setLogin, setUser } from '../redux/actions';
 
@@ -26,7 +26,7 @@ const LogIn = ({
     const emptyForm = form.email === '' || form.password === '';
     if (!emptyForm) {
       setLoading(true);
-      getToken(form).then(responseToken => {
+      setSession(form).then(responseToken => {
         if (responseToken.status !== 401) {
           store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
           setLogin(true);

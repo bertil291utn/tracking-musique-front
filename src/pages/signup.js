@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import store from 'store';
 import Button from '../components/button';
 import Input from '../components/input';
-import { addNewUser, getToken } from '../logic-operations/Api';
+import { addNewUser } from '../logic-operations/Api';
 import storeKeys from '../assets/storeKeys';
 import styles from './signup.module.scss';
 import TagMessage from '../components/tag-message';
@@ -28,15 +28,12 @@ const SignUp = ({
       setLoading(true);
       const userResponse = await addNewUser(form);
       if (userResponse.status === 201) {
-        const responseToken = await getToken(form);
-        if (responseToken.status !== 401) {
-          store.set(storeKeys.TOKEN_VAR, responseToken.data.token);
-          setLogin(true);
-          setUser(responseToken.data.userId);
-          setForm(initialForm);
-          history.push('/');
-          history.go(0);
-        }
+        store.set(storeKeys.TOKEN_VAR, userResponse.data.token);
+        setLogin(true);
+        setUser(userResponse.data.user.id);
+        setForm(initialForm);
+        history.push('/');
+        history.go(0);
       } else if (userResponse.status === 422) setForm({ error: true });
       setLoading(false);
     }
