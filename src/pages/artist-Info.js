@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import store from 'store';
-import { addUserArtistStats, getArtist, getArtistTopTracks } from '../logic-operations/Api';
+import { addUserArtistStats, getArtistTopTracks } from '../logic-operations/Api';
 import ArrowBack from '../components/arrow-back';
 import PhoneContainer from '../components/phone-container';
 import TagMessage from '../components/tag-message';
@@ -10,25 +10,25 @@ import './artist-info.scss';
 
 const ArtistInfo = () => {
   const [loading, setLoading] = useState(true);
-  const [artist, setArtist] = useState([]);
   const [tracks, setTracks] = useState([]);
   const playerOptionInitial = { player: false, idTrack: '' };
   const [playerOption, setPlayerOption] = useState(playerOptionInitial);
   const params = useParams();
   const [responseMessage, setResponseMessage] = useState('');
+  const location = useLocation();
+  const { artist: { id_string: idString, name, photoUrl } } = location;
 
   useEffect(() => {
-    Promise.all([getArtist(params.id), getArtistTopTracks(params.id)]).then(data => {
+    getArtistTopTracks(idString).then(data => {
       if (data !== null) setLoading(false);
-      setArtist(data[0]);
-      setTracks(data[1].tracks);
+      setTracks(data.tracks);
     });
   }, []);
 
   const playActivated = track => () => {
     const { id, name } = track;
     setPlayerOption({ player: true, idTrack: id });
-    addUserArtistStats(id, name, track.duration_ms, artist.id, store.get(storeKeys.TOKEN_VAR))
+    addUserArtistStats(id, name, track.duration_ms, params.id, store.get(storeKeys.TOKEN_VAR))
       .then(response => {
         if (response.status === 201) {
           setResponseMessage('stats saved');
@@ -37,15 +37,14 @@ const ArtistInfo = () => {
   };
 
   let trackNumber = 0;
-  const artistTracks = artist.length !== 0 && tracks.length !== 0;
   return (
     <PhoneContainer tabActive="1" playerActive={playerOption.player} trackId={playerOption.idTrack}>
-      {artistTracks && !loading
+      { tracks.length !== 0 && !loading
         && (
           <>
             <div className="header-artist-info">
-              <div className="hero-inner" style={{ backgroundImage: `url(${artist.images?.[0].url})` }} />
-              <p>{artist.name}</p>
+              <div className="hero-inner" style={{ backgroundImage: `url(${photoUrl})` }} />
+              <p>{name}</p>
               <ArrowBack path="/artists" />
             </div>
             <div className="body-artist-info">

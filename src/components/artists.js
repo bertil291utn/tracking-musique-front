@@ -1,36 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getArtists, getUserArtists } from '../logic-operations/Api';
+import store from 'store';
+import { getUserArtistStats } from '../logic-operations/Api';
 
 import ArtistItems from './artist-items';
 import IconsSvg from '../assets/icons/icons.svg';
 import PhoneContainer from './phone-container';
 import TagMessage from './tag-message';
+import storeKeys from '../assets/storeKeys';
 import './artists.scss';
 
-const Artists = ({ user }) => {
-  const [artists, setArtists] = useState([]);
-  const [idStrings, setIdStrings] = useState([]);
+const Artists = () => {
+  const [artists, setArtistsData] = useState([]);
   const [loadingArtists, setLoadingArtists] = useState(true);
 
   useEffect(() => {
-    if (user !== 0) {
-      getUserArtists(user)
-        .then(response => response.data.included.map(tracks => tracks.attributes.id_string))
-        .then(idStrings => {
-          if (idStrings.length !== 0) {
-            setIdStrings(idStrings);
-            getArtists(idStrings).then(response => {
-              setArtists(response.artists);
-              setLoadingArtists(false);
-            });
-          }
+    getUserArtistStats(store.get(storeKeys.TOKEN_VAR))
+      .then(response => {
+        if (response.status === 200) {
           setLoadingArtists(false);
-        });
-    }
-  }, [user]);
+          setArtistsData(response.data.data);
+        }
+      });
+  }, []);
 
   return (
     <PhoneContainer tabActive="1">
@@ -42,32 +34,35 @@ const Artists = ({ user }) => {
         </Link>
         <h3>MY MUSIC</h3>
       </div>
-      {idStrings.length !== 0 && !loadingArtists
+      {artists.length !== 0 && !loadingArtists
         && (
           <>
             <div className="artists-items">
-              {artists.map(elem => (
-                <Link
-                  key={elem.id}
-                  to={`/artists/${elem.id}`}
-                >
-                  <ArtistItems
-                    photoUrl={elem.images?.[elem.images.length - 1].url}
-                    artistName={elem.name}
-                  />
-                </Link>
-              ))}
+              {artists.map(elem => {
+                const { attributes } = elem;
+                return (
+                  <Link
+                    key={elem.id}
+                    to={{ pathname: `/artists/${elem.id}`, artist: attributes }}
+                  >
+                    <ArtistItems
+                      photoUrl={attributes.photoUrl}
+                      artistName={attributes.name}
+                    />
+                  </Link>
+                );
+              })}
             </div>
           </>
         )}
       {
-        idStrings.length === 0 && loadingArtists
+        artists.length === 0 && loadingArtists
         && (
           <TagMessage title="Loading..." />
         )
       }
       {
-        idStrings.length === 0 && !loadingArtists
+        artists.length === 0 && !loadingArtists
         && (
           <TagMessage
             title="No data available"
@@ -79,16 +74,4 @@ const Artists = ({ user }) => {
   );
 };
 
-Artists.propTypes = {
-  user: PropTypes.number,
-};
-
-Artists.defaultProps = {
-  user: 0,
-};
-
-const mapStateToProps = state => ({
-  user: state.user,
-});
-
-export default connect(mapStateToProps)(Artists);
+export default Artists;
