@@ -163,16 +163,15 @@ const addUserArtist = async (idString, name, photoUrl, token) => {
   return { data, status: response.status };
 };
 
-const addUserArtistStats = async (spotifyTrackId, trackName, hours, idString, token) => {
+const addUserArtistStats = async (spotifyTrackId, trackName, hours, artistId, token) => {
   const headers = new Headers();
   headers.append('Authorization', token);
   headers.append('Content-Type', 'application/json');
 
   const body = JSON.stringify({
     stat: {
-      hours, track_name: trackName, spotify_track_id: spotifyTrackId,
+      hours, track_name: trackName, spotify_track_id: spotifyTrackId, artist_id: artistId,
     },
-    id_string: idString,
   });
 
   const requestOptions = {
