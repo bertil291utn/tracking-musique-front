@@ -11,7 +11,7 @@ const Profile = () => {
 
   const signOut = () => {
     store.remove(storeKeys.TOKEN_VAR);
-    history.go(0);
+    history.push('/');
   };
 
   return (
