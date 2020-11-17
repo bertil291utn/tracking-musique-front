@@ -1,0 +1,59 @@
+@import "../styles/colors";
+
+.header-artist-info {
+  position: relative;
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    bottom: 3rem;
+    font-size: 2.8rem;
+    font-weight: 400;
+    position: absolute;
+    text-align: center;
+    width: 100%;
+  }
+
+  .hero-inner {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 200px;
+    opacity: 0.5;
+  }
+
+  .hero-inner::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, #fff, transparent);
+  }
+}
+
+.body-artist-info {
+  padding: 1rem 2rem;
+
+  h3 {
+    text-align: center;
+  }
+}
+
+.popular-items {
+  margin-top: 2rem;
+
+  .track-item {
+    align-items: center;
+    cursor: pointer;
+    display: grid;
+    grid-template-columns: 0.15fr 0.25fr 1fr;
+    margin-bottom: 1rem;
+  }
+
+  .track-item:hover {
+    background-color: $light;
+  }
+}

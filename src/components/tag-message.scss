@@ -1,0 +1,17 @@
+@import "../styles/colors";
+
+.no-content {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  height: 80%;
+
+  .no-content-container {
+    margin: 0 auto;
+
+    p {
+      font-size: 0.8rem;
+      color: $secondary;
+    }
+  }
+}

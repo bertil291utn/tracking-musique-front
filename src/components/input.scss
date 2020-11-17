@@ -1,0 +1,20 @@
+@import '../styles/colors';
+
+.input {
+  border: 1px solid $light;
+  border-radius: 30px;
+  font-family: 'acremedium', Arial, sans-serif;
+  font-size: 1rem;
+  height: 59px;
+  left: 45px;
+  margin: 1rem 0;
+  opacity: 1;
+  padding-left: 2rem;
+  top: 274px;
+  width: 324px;
+}
+
+::placeholder {
+  color: $primary;
+  opacity: 1; /* Firefox */
+}

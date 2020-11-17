@@ -1,0 +1,9 @@
+@import "../styles/colors";
+@import "../styles/sizes";
+
+.background {
+  border: solid 1px $primary;
+  margin: 0 auto;
+  max-width: $window-width;
+  overflow-y: hidden;
+}
