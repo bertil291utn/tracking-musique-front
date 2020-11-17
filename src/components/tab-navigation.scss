@@ -1,0 +1,34 @@
+@import '../styles/colors';
+
+.container-tab {
+  box-shadow: 0 -3px 6px #00000029;
+  width: 100%;
+  background-color: #fff;
+
+  .content-tab {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 1rem;
+  }
+}
+
+.icon {
+  cursor: pointer;
+  width: 20%;
+  color: $light;
+  text-align: center;
+
+  svg {
+    height: 1.5rem;
+    width: 50%;
+    fill: $light;
+  }
+}
+
+.active {
+  color: $primary;
+
+  svg {
+    fill: $primary;
+  }
+}

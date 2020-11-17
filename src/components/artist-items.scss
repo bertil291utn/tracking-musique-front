@@ -1,0 +1,31 @@
+@import '../styles/colors';
+
+.content-items {
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  margin: 20px 0;
+
+  img {
+    border-radius: 50%;
+    width: 75%;
+  }
+
+  p {
+    margin: 5px;
+  }
+
+  .info-items {
+    margin: auto 0;
+  }
+}
+
+.title-artist {
+  font-size: 1rem;
+  color: $primary;
+}
+
+.subtitle-artist {
+  font-size: 0.8rem;
+  color: $secondary;
+}

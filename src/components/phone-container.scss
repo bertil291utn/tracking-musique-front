@@ -1,0 +1,24 @@
+@import "../styles/sizes";
+
+.phone-container {
+  max-width: $window-width;
+
+  .phone-content {
+    height: 75vh;
+    overflow-y: auto;
+    padding-bottom: 13vh;
+  }
+
+  .iframeStyle {
+    bottom: 10vh;
+    position: fixed;
+    max-width: inherit;
+    width: 100%;
+  }
+
+  .container-tab {
+    position: fixed;
+    width: inherit;
+    max-width: inherit;
+  }
+}
