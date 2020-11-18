@@ -18,7 +18,7 @@ Note: This is only a mobile web app
 - CSS
 - ES6
 - Spotify [API](https://developer.spotify.com/console/)
-- My spotify stats [backend API](https://github.com/bertil291utn/tracking_musique_api/tree/feature/api)
+- My spotify stats [backend API](https://github.com/bertil291utn/tracking_musique_api)
 - Spotify web [library](https://www.npmjs.com/package/spotify-web-api-js)
 
 ## Authorization workFlow API diagrams
